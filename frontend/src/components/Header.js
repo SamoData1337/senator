@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from './ui/button';
-import { Menu, X, Globe } from 'lucide-react';
 
 const Header = () => {
   const { language, t, switchLanguage } = useLanguage();
@@ -54,7 +53,7 @@ const Header = () => {
           {/* Language Switcher & Mobile Menu */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <Globe className="w-4 h-4 text-zinc-400" />
+              <span className="text-zinc-400">🌍</span>
               <Button
                 variant="ghost"
                 size="sm"
@@ -78,7 +77,7 @@ const Header = () => {
               className="md:hidden text-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? '✕' : '☰'}
             </button>
           </div>
         </div>
