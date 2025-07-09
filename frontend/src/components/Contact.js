@@ -4,7 +4,6 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { useToast } from '../hooks/use-toast';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -43,22 +42,22 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: MapPin,
+      icon: '📍',
       label: t('contact.info.address'),
       value: t('contact.info.address')
     },
     {
-      icon: Phone,
+      icon: '📞',
       label: t('contact.info.phone'),
       value: t('contact.info.phone')
     },
     {
-      icon: Mail,
+      icon: '✉️',
       label: t('contact.info.email'),
       value: t('contact.info.email')
     },
     {
-      icon: Clock,
+      icon: '🕒',
       label: t('contact.info.hours'),
       value: t('contact.info.hours')
     }
@@ -90,7 +89,7 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-zinc-700 to-zinc-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-6 h-6 text-white" />
+                    <span className="text-xl">{info.icon}</span>
                   </div>
                   <div>
                     <div className="text-white font-medium mb-1">{info.label}</div>
@@ -103,7 +102,7 @@ const Contact = () => {
             {/* Map Placeholder */}
             <div className="mt-8 h-64 bg-zinc-800/50 rounded-2xl border border-zinc-700 flex items-center justify-center">
               <div className="text-center">
-                <MapPin className="w-12 h-12 text-zinc-600 mx-auto mb-2" />
+                <span className="text-6xl text-zinc-600 mb-2 block">🗺️</span>
                 <div className="text-zinc-400">Interaktívna mapa</div>
               </div>
             </div>

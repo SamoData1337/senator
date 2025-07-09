@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { ArrowRight } from 'lucide-react';
 
 const Services = () => {
   const { t } = useLanguage();
@@ -43,7 +42,7 @@ const Services = () => {
               {/* Learn More Link */}
               <div className="flex items-center gap-2 text-zinc-300 group-hover:text-white transition-colors cursor-pointer">
                 <span className="text-sm font-medium">Zistiť viac</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </div>
           ))}

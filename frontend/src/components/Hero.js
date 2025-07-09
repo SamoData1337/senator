@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from './ui/button';
-import { ArrowRight, Phone } from 'lucide-react';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -58,7 +57,7 @@ const Hero = () => {
               className="bg-gradient-to-r from-zinc-700 to-zinc-600 hover:from-zinc-600 hover:to-zinc-500 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 group"
             >
               {t('hero.cta')}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Button>
             <Button
               variant="outline"
@@ -66,7 +65,7 @@ const Hero = () => {
               onClick={() => scrollToSection('#contact')}
               className="border-zinc-600 text-zinc-300 hover:bg-zinc-800 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
             >
-              <Phone className="w-5 h-5" />
+              <span>📞</span>
               {t('hero.ctaSecondary')}
             </Button>
           </div>

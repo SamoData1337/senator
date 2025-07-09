@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { portfolioItems } from '../data/mock';
-import { ExternalLink } from 'lucide-react';
 
 const Portfolio = () => {
   const { t } = useLanguage();
@@ -64,7 +63,7 @@ const Portfolio = () => {
                 {/* Overlay Content */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 transition-colors">
-                    <ExternalLink className="w-6 h-6 text-white" />
+                    <span className="text-white text-xl">↗</span>
                   </div>
                 </div>
               </div>

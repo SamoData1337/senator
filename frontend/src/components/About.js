@@ -1,14 +1,13 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Check, Award, Users, Wrench } from 'lucide-react';
 
 const About = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { icon: Award, value: '20+', label: 'Rokov skúseností' },
-    { icon: Users, value: '500+', label: 'Spokojných zákazníkov' },
-    { icon: Wrench, value: '1000+', label: 'Realizovaných projektov' }
+    { icon: '🏆', value: '20+', label: 'Rokov skúseností' },
+    { icon: '👥', value: '500+', label: 'Spokojných zákazníkov' },
+    { icon: '🔧', value: '1000+', label: 'Realizovaných projektov' }
   ];
 
   return (
@@ -36,7 +35,7 @@ const About = () => {
               {t('about.features').map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className="w-6 h-6 bg-gradient-to-r from-zinc-700 to-zinc-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Check className="w-4 h-4 text-white" />
+                    <span className="text-white text-sm">✓</span>
                   </div>
                   <span className="text-zinc-300 font-medium">{feature}</span>
                 </div>
@@ -48,7 +47,7 @@ const About = () => {
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="w-12 h-12 bg-gradient-to-r from-zinc-700 to-zinc-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <stat.icon className="w-6 h-6 text-white" />
+                    <span className="text-2xl">{stat.icon}</span>
                   </div>
                   <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
                   <div className="text-sm text-zinc-400">{stat.label}</div>
