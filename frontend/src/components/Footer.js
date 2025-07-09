@@ -24,13 +24,13 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center hover:bg-zinc-700 transition-colors">
-                <Facebook className="w-5 h-5 text-zinc-400" />
+                <span className="text-zinc-400 text-lg">📘</span>
               </a>
               <a href="#" className="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center hover:bg-zinc-700 transition-colors">
-                <Instagram className="w-5 h-5 text-zinc-400" />
+                <span className="text-zinc-400 text-lg">📸</span>
               </a>
               <a href="#" className="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center hover:bg-zinc-700 transition-colors">
-                <LinkedIn className="w-5 h-5 text-zinc-400" />
+                <span className="text-zinc-400 text-lg">💼</span>
               </a>
             </div>
           </div>
