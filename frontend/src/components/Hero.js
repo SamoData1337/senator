@@ -33,8 +33,8 @@ const Hero = () => {
       <div className="relative z-20 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 bg-amber-800/60 backdrop-blur-sm rounded-full border border-amber-700/50 mb-6">
-            <span className="text-amber-100 text-sm font-medium">
+          <div className="inline-flex items-center px-4 py-2 bg-yellow-400/90 backdrop-blur-sm rounded-full border border-yellow-500/50 mb-6">
+            <span className="text-black text-sm font-bold">
               {t('hero.subtitle')}
             </span>
           </div>
