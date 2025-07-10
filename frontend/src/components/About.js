@@ -46,11 +46,11 @@ const About = () => {
             <div className="grid grid-cols-3 gap-6">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-zinc-700 to-zinc-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center mx-auto mb-2">
                     <span className="text-2xl">{stat.icon}</span>
                   </div>
                   <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-sm text-zinc-400">{stat.label}</div>
+                  <div className="text-sm text-amber-400">{stat.label}</div>
                 </div>
               ))}
             </div>
