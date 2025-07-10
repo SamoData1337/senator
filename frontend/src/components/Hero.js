@@ -13,7 +13,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-amber-900 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-slate-900 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
