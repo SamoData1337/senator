@@ -28,12 +28,12 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">S</span>
+            <div className="w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center shadow-lg">
+              <span className="text-black font-bold text-xl">S</span>
             </div>
             <div className="text-white">
               <div className="font-bold text-lg">Senator</div>
-              <div className="text-sm text-amber-300">Slovakia</div>
+              <div className="text-sm text-yellow-400">Slovakia</div>
             </div>
           </div>
 
