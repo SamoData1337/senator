@@ -34,10 +34,10 @@ const About = () => {
             <div className="space-y-4 mb-8">
               {t('about.features').map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-gradient-to-r from-zinc-700 to-zinc-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 bg-gradient-to-r from-amber-700 to-amber-600 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white text-sm">✓</span>
                   </div>
-                  <span className="text-zinc-300 font-medium">{feature}</span>
+                  <span className="text-amber-200 font-medium">{feature}</span>
                 </div>
               ))}
             </div>
