@@ -64,12 +64,12 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-stone-900">
+    <section id="contact" className="py-20 bg-slate-900">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-amber-800/50 rounded-full border border-amber-700/50 mb-6">
-            <span className="text-amber-200 text-sm font-medium">
+          <div className="inline-flex items-center px-4 py-2 bg-yellow-400/90 rounded-full border border-yellow-500/50 mb-6">
+            <span className="text-black text-sm font-bold">
               {t('contact.subtitle')}
             </span>
           </div>
@@ -88,28 +88,28 @@ const Contact = () => {
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
                     <span className="text-xl">{info.icon}</span>
                   </div>
                   <div>
                     <div className="text-white font-medium mb-1">{info.label}</div>
-                    <div className="text-amber-300">{info.value}</div>
+                    <div className="text-slate-300">{info.value}</div>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Map Placeholder */}
-            <div className="mt-8 h-64 bg-amber-800/20 backdrop-blur-sm rounded-2xl border border-amber-700/30 flex items-center justify-center">
+            <div className="mt-8 h-64 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 flex items-center justify-center">
               <div className="text-center">
-                <span className="text-6xl text-amber-600 mb-2 block">🗺️</span>
-                <div className="text-amber-300">Interaktívna mapa</div>
+                <span className="text-6xl text-yellow-400 mb-2 block">🗺️</span>
+                <div className="text-slate-300">Interaktívna mapa</div>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="bg-amber-800/20 backdrop-blur-sm rounded-2xl p-8 border border-amber-700/30">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -121,7 +121,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="bg-stone-900/50 border-amber-600/50 text-white placeholder-amber-400 focus:border-amber-500"
+                    className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-400 focus:border-yellow-400"
                     placeholder={t('contact.form.name')}
                   />
                 </div>
@@ -133,7 +133,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="bg-stone-900/50 border-amber-600/50 text-white placeholder-amber-400 focus:border-amber-500"
+                    className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-400 focus:border-yellow-400"
                     placeholder={t('contact.form.phone')}
                   />
                 </div>
@@ -149,7 +149,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="bg-stone-900/50 border-amber-600/50 text-white placeholder-amber-400 focus:border-amber-500"
+                  className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-400 focus:border-yellow-400"
                   placeholder={t('contact.form.email')}
                 />
               </div>
@@ -164,14 +164,14 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="bg-stone-900/50 border-amber-600/50 text-white placeholder-amber-400 resize-none focus:border-amber-500"
+                  className="bg-slate-900/50 border-slate-600 text-white placeholder-slate-400 resize-none focus:border-yellow-400"
                   placeholder={t('contact.form.message')}
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 text-white py-3 rounded-lg font-medium transition-all duration-300 shadow-lg"
+                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold py-3 rounded-lg transition-all duration-300 shadow-lg"
               >
                 {t('contact.form.submit')}
               </Button>

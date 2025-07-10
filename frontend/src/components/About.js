@@ -11,13 +11,13 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-stone-950">
+    <section id="about" className="py-20 bg-slate-950">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div>
-            <div className="inline-flex items-center px-4 py-2 bg-amber-800/50 rounded-full border border-amber-700/50 mb-6">
-              <span className="text-amber-200 text-sm font-medium">
+            <div className="inline-flex items-center px-4 py-2 bg-yellow-400/90 rounded-full border border-yellow-500/50 mb-6">
+              <span className="text-black text-sm font-bold">
                 {t('about.subtitle')}
               </span>
             </div>
@@ -26,7 +26,7 @@ const About = () => {
               {t('about.title')}
             </h2>
 
-            <p className="text-lg text-amber-200 mb-8 leading-relaxed">
+            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
               {t('about.description')}
             </p>
 
@@ -34,10 +34,10 @@ const About = () => {
             <div className="space-y-4 mb-8">
               {t('about.features').map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-gradient-to-r from-amber-700 to-amber-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-sm">✓</span>
+                  <div className="w-6 h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-black text-sm font-bold">✓</span>
                   </div>
-                  <span className="text-amber-200 font-medium">{feature}</span>
+                  <span className="text-slate-300 font-medium">{feature}</span>
                 </div>
               ))}
             </div>
@@ -46,11 +46,11 @@ const About = () => {
             <div className="grid grid-cols-3 gap-6">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mx-auto mb-2 shadow-lg">
                     <span className="text-2xl">{stat.icon}</span>
                   </div>
                   <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-sm text-amber-400">{stat.label}</div>
+                  <div className="text-sm text-slate-400">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -64,12 +64,12 @@ const About = () => {
                 alt="Storage solutions"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 to-transparent rounded-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent rounded-2xl" />
             </div>
             
             {/* Decorative Elements */}
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg opacity-20 -z-10" />
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-r from-amber-600 to-amber-500 rounded-lg opacity-20 -z-10" />
+            <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg opacity-20 -z-10" />
+            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-r from-slate-600 to-slate-500 rounded-lg opacity-20 -z-10" />
           </div>
         </div>
       </div>
