@@ -21,7 +21,7 @@ const Hero = () => {
           alt="Built-in wardrobe"
           className="w-full h-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-900/70 to-stone-900/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-800/60" />
       </div>
 
       {/* Grid Pattern Overlay */}
