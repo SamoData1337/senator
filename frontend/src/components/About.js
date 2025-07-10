@@ -16,8 +16,8 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div>
-            <div className="inline-flex items-center px-4 py-2 bg-zinc-800/50 rounded-full border border-zinc-700 mb-6">
-              <span className="text-zinc-300 text-sm font-medium">
+            <div className="inline-flex items-center px-4 py-2 bg-amber-800/50 rounded-full border border-amber-700/50 mb-6">
+              <span className="text-amber-200 text-sm font-medium">
                 {t('about.subtitle')}
               </span>
             </div>
