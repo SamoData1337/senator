@@ -19,9 +19,9 @@ const Hero = () => {
         <img
           src="https://images.pexels.com/photos/7614609/pexels-photo-7614609.jpeg"
           alt="Built-in wardrobe"
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-zinc-900/90 to-zinc-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-900/70 to-stone-900/60" />
       </div>
 
       {/* Grid Pattern Overlay */}
