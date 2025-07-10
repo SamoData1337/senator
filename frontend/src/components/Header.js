@@ -43,7 +43,7 @@ const Header = () => {
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.href)}
-                className="text-amber-200 hover:text-white transition-colors duration-300 font-medium"
+                className="text-slate-300 hover:text-yellow-400 transition-colors duration-300 font-medium"
               >
                 {t(`nav.${item.key}`)}
               </button>
