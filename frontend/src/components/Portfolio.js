@@ -13,12 +13,12 @@ const Portfolio = () => {
     : portfolioItems.filter(item => item.category === activeCategory);
 
   return (
-    <section id="portfolio" className="py-20 bg-zinc-950">
+    <section id="portfolio" className="py-20 bg-stone-950">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-zinc-800/50 rounded-full border border-zinc-700 mb-6">
-            <span className="text-zinc-300 text-sm font-medium">
+          <div className="inline-flex items-center px-4 py-2 bg-amber-800/50 rounded-full border border-amber-700/50 mb-6">
+            <span className="text-amber-200 text-sm font-medium">
               {t('portfolio.subtitle')}
             </span>
           </div>
@@ -34,8 +34,8 @@ const Portfolio = () => {
                 onClick={() => setActiveCategory(category)}
                 className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-gradient-to-r from-zinc-700 to-zinc-600 text-white'
-                    : 'bg-zinc-800/50 text-zinc-300 hover:bg-zinc-800 hover:text-white border border-zinc-700'
+                    ? 'bg-gradient-to-r from-amber-700 to-amber-600 text-white shadow-lg'
+                    : 'bg-amber-800/20 text-amber-200 hover:bg-amber-800/30 hover:text-white border border-amber-700/30 hover:border-amber-600/50'
                 }`}
               >
                 {category}
@@ -49,7 +49,7 @@ const Portfolio = () => {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="group bg-zinc-800/50 rounded-2xl overflow-hidden border border-zinc-700 hover:border-zinc-600 transition-all duration-300 hover:transform hover:scale-105"
+              className="group bg-amber-800/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber-700/30 hover:border-amber-600/50 transition-all duration-300 hover:transform hover:scale-105"
             >
               {/* Image */}
               <div className="relative overflow-hidden">
@@ -58,7 +58,7 @@ const Portfolio = () => {
                   alt={item.title}
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 {/* Overlay Content */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -70,11 +70,11 @@ const Portfolio = () => {
 
               {/* Content */}
               <div className="p-6">
-                <div className="text-sm text-zinc-400 mb-2">{item.category}</div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-zinc-200 transition-colors">
+                <div className="text-sm text-amber-400 mb-2">{item.category}</div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-100 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-zinc-400 leading-relaxed">
+                <p className="text-amber-200 leading-relaxed">
                   {item.description}
                 </p>
               </div>
