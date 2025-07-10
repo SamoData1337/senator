@@ -54,7 +54,7 @@ const Hero = () => {
             <Button
               size="lg"
               onClick={() => scrollToSection('#portfolio')}
-              className="bg-gradient-to-r from-zinc-700 to-zinc-600 hover:from-zinc-600 hover:to-zinc-500 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 group"
+              className="bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 group shadow-lg"
             >
               {t('hero.cta')}
               <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -63,7 +63,7 @@ const Hero = () => {
               variant="outline"
               size="lg"
               onClick={() => scrollToSection('#contact')}
-              className="border-zinc-600 text-zinc-300 hover:bg-zinc-800 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
+              className="border-amber-600 text-amber-100 hover:bg-amber-800/50 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 backdrop-blur-sm"
             >
               <span>📞</span>
               {t('hero.ctaSecondary')}
