@@ -64,12 +64,12 @@ const About = () => {
                 alt="Storage solutions"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/50 to-transparent rounded-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 to-transparent rounded-2xl" />
             </div>
             
             {/* Decorative Elements */}
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-zinc-700 to-zinc-600 rounded-lg opacity-20 -z-10" />
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-r from-zinc-600 to-zinc-500 rounded-lg opacity-20 -z-10" />
+            <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg opacity-20 -z-10" />
+            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-r from-amber-600 to-amber-500 rounded-lg opacity-20 -z-10" />
           </div>
         </div>
       </div>
