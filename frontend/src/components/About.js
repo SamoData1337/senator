@@ -26,7 +26,7 @@ const About = () => {
               {t('about.title')}
             </h2>
 
-            <p className="text-lg text-zinc-300 mb-8 leading-relaxed">
+            <p className="text-lg text-amber-200 mb-8 leading-relaxed">
               {t('about.description')}
             </p>
 
