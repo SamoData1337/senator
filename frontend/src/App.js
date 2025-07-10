@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-zinc-900">
+    <div className="min-h-screen bg-stone-900">
       <Header />
       <Hero />
       <About />
