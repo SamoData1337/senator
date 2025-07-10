@@ -53,12 +53,12 @@ const Header = () => {
           {/* Language Switcher & Mobile Menu */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <span className="text-zinc-400">🌍</span>
+              <span className="text-amber-400">🌍</span>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => switchLanguage('sk')}
-                className={`text-sm ${language === 'sk' ? 'text-white' : 'text-zinc-400'}`}
+                className={`text-sm ${language === 'sk' ? 'text-white' : 'text-amber-400'}`}
               >
                 SK
               </Button>
@@ -66,7 +66,7 @@ const Header = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => switchLanguage('en')}
-                className={`text-sm ${language === 'en' ? 'text-white' : 'text-zinc-400'}`}
+                className={`text-sm ${language === 'en' ? 'text-white' : 'text-amber-400'}`}
               >
                 EN
               </Button>
