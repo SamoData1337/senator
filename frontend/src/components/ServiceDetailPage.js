@@ -16,7 +16,7 @@ const ServiceDetailPage = () => {
     'satniky': 'Šatníky',
     'deliace-priecky': 'Deliace priečky',
     'prechodove-dvere': 'Prechodové dvere',
-    'komody-nabytok-a-ine': 'Nábytok',
+    'komody-nabytok-a-ine': 'Komody, nábytok a iné',
     'postele': 'Postele'
   };
 
