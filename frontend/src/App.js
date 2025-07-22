@@ -10,6 +10,7 @@ import Services from "./components/Services";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ServiceDetailPage from "./components/ServiceDetailPage";
 
 const Home = () => {
   return (
@@ -32,6 +33,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/services/:serviceSlug" element={<ServiceDetailPage />} />
           </Routes>
         </BrowserRouter>
         <Toaster />
@@ -39,5 +41,7 @@ function App() {
     </LanguageProvider>
   );
 }
+
+export default App;
 
 export default App;
