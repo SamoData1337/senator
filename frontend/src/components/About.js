@@ -58,15 +58,14 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Image */}
+          {/* Right Image Slider */}
           <div className="relative">
             <div className="relative z-10">
-              <img
-                src="https://images.pexels.com/photos/8134812/pexels-photo-8134812.jpeg"
-                alt="Storage solutions"
-                className="w-full h-96 object-cover rounded-2xl shadow-2xl"
+              <ImageSlider 
+                images={aboutImages} 
+                autoSlide={true} 
+                slideInterval={5000} 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent rounded-2xl" />
             </div>
             
             {/* Decorative Elements */}
