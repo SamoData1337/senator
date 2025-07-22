@@ -241,26 +241,35 @@ export const portfolioItems = [
   }
 ];
 
-export const testimonials = [
+export const aboutImages = [
   {
     id: 1,
-    name: 'Ján Novák',
-    location: 'Bratislava',
-    text: 'Vynikajúca kvalita a profesionálny prístup. Naša nová vstavana skriňa je presne taká, ako sme si predstavovali.',
-    rating: 5
+    src: 'https://images.pexels.com/photos/8134812/pexels-photo-8134812.jpeg',
+    alt: 'Custom storage solutions',
+    caption: 'Kvalitné úložné riešenia'
   },
   {
     id: 2,
-    name: 'Mária Kováčová',
-    location: 'Košice',
-    text: 'Odporúčam! Rýchla realizácia a špičková kvalita materiálov. Sme veľmi spokojní s výsledkom.',
-    rating: 5
+    src: 'https://images.pexels.com/photos/7614609/pexels-photo-7614609.jpeg',
+    alt: 'Modern built-in wardrobe',
+    caption: 'Moderné vstavané skrine'
   },
   {
     id: 3,
-    name: 'Peter Svoboda',
-    location: 'Žilina',
-    text: 'Profesionálne poradenstvo a presná montáž. Určite budeme využívať ich služby aj v budúcnosti.',
-    rating: 5
+    src: 'https://images.unsplash.com/photo-1638879706389-59490f8b28a3',
+    alt: 'Sliding door systems',
+    caption: 'Posuvné dverové systémy'
+  },
+  {
+    id: 4,
+    src: 'https://images.pexels.com/photos/7031766/pexels-photo-7031766.jpeg',
+    alt: 'Built-in hallway storage',
+    caption: 'Vstavaný úložný priestor'
+  },
+  {
+    id: 5,
+    src: 'https://images.unsplash.com/photo-1601926299866-6a5c9bfa6be0',
+    alt: 'Minimalist wardrobe design',
+    caption: 'Minimalistický dizajn'
   }
 ];
