@@ -6,6 +6,34 @@ import ServiceGallery from './ServiceGallery';
 
 const Services = () => {
   const { t } = useLanguage();
+  const [selectedService, setSelectedService] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Map service titles to portfolio categories
+  const serviceToCategory = {
+    'Vstavané skrine': 'Vstavané skrine',
+    'Šatníky': 'Šatníky',
+    'Deliace priečky': 'Deliace priečky', 
+    'Prechodové dvere': 'Prechodové dvere',
+    'Komody, nábytok a iné': 'Nábytok',
+    'Postele': 'Postele'
+  };
+
+  const handleServiceClick = (serviceTitle) => {
+    setSelectedService(serviceTitle);
+    setIsModalOpen(true);
+  };
+
+  const handleViewAll = () => {
+    setIsModalOpen(false);
+    // Navigate to dedicated service page (we'll implement this with React Router)
+    window.location.href = `/services/${selectedService.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+  };
+
+  const getProjectsForService = (serviceTitle) => {
+    const category = serviceToCategory[serviceTitle];
+    return portfolioItems.filter(item => item.category === category);
+  };
 
   return (
     <section id="services" className="py-20 bg-slate-900">
