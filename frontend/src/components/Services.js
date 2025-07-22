@@ -55,7 +55,8 @@ const Services = () => {
           {t('services.items').map((service, index) => (
             <div
               key={index}
-              className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:bg-slate-800/70"
+              onClick={() => handleServiceClick(service.title)}
+              className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:bg-slate-800/70 cursor-pointer"
             >
               {/* Icon */}
               <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center mb-6 group-hover:from-yellow-500 group-hover:to-yellow-600 transition-all duration-300 shadow-lg">
@@ -71,13 +72,28 @@ const Services = () => {
               </p>
 
               {/* Learn More Link */}
-              <div className="flex items-center gap-2 text-slate-400 group-hover:text-yellow-400 transition-colors cursor-pointer">
-                <span className="text-sm font-medium">Zistiť viac</span>
+              <div className="flex items-center gap-2 text-slate-400 group-hover:text-yellow-400 transition-colors">
+                <span className="text-sm font-medium">Zobraziť galériu</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Service Gallery Modal */}
+        <Modal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)}
+          size="full"
+        >
+          {selectedService && (
+            <ServiceGallery 
+              serviceName={selectedService}
+              projects={getProjectsForService(selectedService)}
+              onViewAll={handleViewAll}
+            />
+          )}
+        </Modal>
       </div>
     </section>
   );
