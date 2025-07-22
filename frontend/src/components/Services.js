@@ -24,10 +24,33 @@ const Services = () => {
     setIsModalOpen(true);
   };
 
+  // Function to convert Slovak text to URL-friendly slug
+  const createSlug = (text) => {
+    const accents = {
+      'á': 'a', 'ä': 'a', 'č': 'c', 'ď': 'd', 'é': 'e', 'ě': 'e',
+      'í': 'i', 'ľ': 'l', 'ĺ': 'l', 'ň': 'n', 'ó': 'o', 'ô': 'o',
+      'ŕ': 'r', 'š': 's', 'ť': 't', 'ú': 'u', 'ů': 'u', 'ý': 'y',
+      'ž': 'z', 'Á': 'A', 'Ä': 'A', 'Č': 'C', 'Ď': 'D', 'É': 'E',
+      'Ě': 'E', 'Í': 'I', 'Ľ': 'L', 'Ĺ': 'L', 'Ň': 'N', 'Ó': 'O',
+      'Ô': 'O', 'Ŕ': 'R', 'Š': 'S', 'Ť': 'T', 'Ú': 'U', 'Ů': 'U',
+      'Ý': 'Y', 'Ž': 'Z'
+    };
+    
+    return text
+      .split('')
+      .map(char => accents[char] || char)
+      .join('')
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  };
+
   const handleViewAll = () => {
     setIsModalOpen(false);
-    // Navigate to dedicated service page (we'll implement this with React Router)
-    window.location.href = `/services/${selectedService.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+    // Navigate to dedicated service page with proper slug
+    const slug = createSlug(selectedService);
+    window.location.href = `/services/${slug}`;
   };
 
   const getProjectsForService = (serviceTitle) => {
