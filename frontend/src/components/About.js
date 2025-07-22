@@ -1,5 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { aboutImages } from '../data/mock';
+import ImageSlider from './ImageSlider';
 
 const About = () => {
   const { t } = useLanguage();
