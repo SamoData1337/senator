@@ -69,10 +69,11 @@ const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
       {/* Gallery Grid */}
       {projects && projects.length > 0 ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {projects.slice(0, 6).map((project) => (
+          {projects.slice(0, 6).map((project, index) => (
             <div
               key={project.id}
-              className="group relative bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300"
+              onClick={() => openLightbox(index)}
+              className="group relative bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 cursor-pointer"
             >
               <div className="aspect-video relative overflow-hidden">
                 <img
@@ -81,6 +82,11 @@ const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Click to enlarge indicator */}
+                <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white text-sm">🔍</span>
+                </div>
                 
                 {/* Overlay Content */}
                 <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
