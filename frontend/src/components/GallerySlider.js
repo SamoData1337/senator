@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ImageLightbox from './ImageLightbox';
 
 const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
