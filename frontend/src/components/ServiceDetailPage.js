@@ -182,41 +182,7 @@ const ServiceDetailPage = () => {
       {/* Gallery */}
       <section className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Naše realizácie</h2>
-            <p className="text-slate-300">Pozrite si galériu našich dokončených projektov</p>
-          </div>
-
-          {projects.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project) => (
-                <div
-                  key={project.id}
-                  className="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105"
-                >
-                  <div className="aspect-video relative overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-slate-300 text-sm">{project.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <div className="text-6xl text-slate-600 mb-4">🏗️</div>
-              <p className="text-slate-400">Momentálne pripravujeme galériu pre túto kategóriu</p>
-            </div>
-          )}
+          <GallerySlider projects={projects} />
         </div>
       </section>
 
