@@ -118,6 +118,16 @@ const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
           Požiadať o ponuku
         </button>
       </div>
+
+      {/* Image Lightbox */}
+      <ImageLightbox
+        isOpen={lightboxOpen}
+        onClose={closeLightbox}
+        image={projects?.[selectedImageIndex]}
+        onPrevious={projects?.length > 1 ? goToPrevious : null}
+        onNext={projects?.length > 1 ? goToNext : null}
+        showNavigation={projects?.length > 1}
+      />
     </div>
   );
 };
