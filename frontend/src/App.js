@@ -12,9 +12,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ServiceDetailPage from "./components/ServiceDetailPage";
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { Toaster } from "./components/ui/toaster";
 import Header from "./components/Header";
@@ -25,8 +25,6 @@ import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ServiceDetailPage from "./components/ServiceDetailPage";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const location = useLocation();
