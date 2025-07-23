@@ -238,6 +238,34 @@ export const portfolioItems = [
     category: 'Šatníky',
     image: 'https://images.unsplash.com/photo-1601926299866-6a5c9bfa6be0',
     description: 'Minimalistický šatník s čistými líniami'
+  },
+  {
+    id: 6,
+    title: 'Luxusná vstavana skriňa',
+    category: 'Vstavané skrine',
+    image: 'https://images.pexels.com/photos/7614609/pexels-photo-7614609.jpeg',
+    description: 'Prestížne riešenie s LED osvetlením'
+  },
+  {
+    id: 7,
+    title: 'Kompaktná vstavana skriňa',
+    category: 'Vstavané skrine',
+    image: 'https://images.pexels.com/photos/8134812/pexels-photo-8134812.jpeg',
+    description: 'Optimálne využitie malého priestoru'
+  },
+  {
+    id: 8,
+    title: 'Dizajnová vstavana skriňa',
+    category: 'Vstavané skrine',
+    image: 'https://images.pexels.com/photos/7031766/pexels-photo-7031766.jpeg',
+    description: 'Štýlové riešenie pre moderný interiér'
+  },
+  {
+    id: 9,
+    title: 'Veľkorysa vstavana skriňa',
+    category: 'Vstavané skrine',
+    image: 'https://images.unsplash.com/photo-1638879706389-59490f8b28a3',
+    description: 'Rozsiahle úložné riešenie pre celú rodinu'
   }
 ];
 
