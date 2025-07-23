@@ -197,7 +197,13 @@ const ServiceDetailPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
-              onClick={() => navigate('/#contact')}
+              onClick={() => {
+                if (location.pathname === '/') {
+                  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  navigate('/#contact');
+                }
+              }}
               className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold px-8 py-3 rounded-lg transition-all duration-300 shadow-lg"
             >
               Kontaktovať nás
