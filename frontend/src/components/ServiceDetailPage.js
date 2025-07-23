@@ -138,35 +138,41 @@ const ServiceDetailPage = () => {
       {/* Features & Process */}
       <section className="py-16 bg-slate-900">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Features */}
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-6">Čo ponúkame</h2>
-              <div className="space-y-4">
-                {currentService.features.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-black text-sm font-bold">✓</span>
-                    </div>
-                    <span className="text-slate-300">{feature}</span>
-                  </div>
-                ))}
-              </div>
+          {/* Features Section */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Čo ponúkame</h2>
+              <p className="text-slate-300 text-lg">Komplexné služby pre vašu spokojnosť</p>
             </div>
-
-            {/* Process */}
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-6">Proces realizácie</h2>
-              <div className="space-y-4">
-                {currentService.process.map((step, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-black text-sm font-bold">{index + 1}</span>
-                    </div>
-                    <span className="text-slate-300">{step}</span>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {currentService.features.map((feature, index) => (
+                <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-black text-lg font-bold">✓</span>
                   </div>
-                ))}
-              </div>
+                  <h3 className="text-white font-bold mb-2">Kvalitná služba</h3>
+                  <p className="text-slate-300">{feature}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Process Section */}
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Proces realizácie</h2>
+              <p className="text-slate-300 text-lg">Krok za krokom k vašej dokonalej skrini</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {currentService.process.map((step, index) => (
+                <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-black text-lg font-bold">{index + 1}</span>
+                  </div>
+                  <h3 className="text-white font-bold mb-2">Krok {index + 1}</h3>
+                  <p className="text-slate-300">{step}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
