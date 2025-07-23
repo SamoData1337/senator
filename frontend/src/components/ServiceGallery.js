@@ -4,6 +4,8 @@ import ImageLightbox from './ImageLightbox';
 
 const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
   const { t, language } = useLanguage();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const serviceNames = {
     sk: {
@@ -25,6 +27,27 @@ const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
   };
 
   const displayName = serviceNames[language]?.[serviceName] || serviceName;
+  
+  const openLightbox = (index) => {
+    setSelectedImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const goToPrevious = () => {
+    setSelectedImageIndex(
+      selectedImageIndex === 0 ? projects.length - 1 : selectedImageIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setSelectedImageIndex(
+      selectedImageIndex === projects.length - 1 ? 0 : selectedImageIndex + 1
+    );
+  };
   
   return (
     <div className="p-6">
