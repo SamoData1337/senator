@@ -4,6 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { portfolioItems } from '../data/mock';
 import Header from './Header';
 import Footer from './Footer';
+import GallerySlider from './GallerySlider';
 
 const ServiceDetailPage = () => {
   const { serviceSlug } = useParams();
