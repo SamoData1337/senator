@@ -68,14 +68,16 @@ const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
 
       {/* Gallery Container */}
       <div className="relative">
-        {/* Projects Grid - 2 rows, 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {/* Projects Grid - 1 row, 3 columns, larger images */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {getCurrentSlideProjects().map((project, index) => (
             <div
               key={`${currentSlide}-${project.id}-${index}`}
-              className="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105"
+              onClick={() => openLightbox(index)}
+              className="group bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
             >
-              <div className="aspect-video relative overflow-hidden">
+              {/* Larger aspect ratio for bigger images */}
+              <div className="aspect-[4/3] relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -83,10 +85,15 @@ const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
+                {/* Click to enlarge indicator */}
+                <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white text-sm">🔍</span>
+                </div>
+                
                 {/* Overlay Content */}
                 <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h3 className="text-white font-bold text-sm mb-1">{project.title}</h3>
-                  <p className="text-slate-300 text-xs">{project.description}</p>
+                  <h3 className="text-white font-bold text-lg mb-1">{project.title}</h3>
+                  <p className="text-slate-300 text-sm">{project.description}</p>
                 </div>
               </div>
             </div>
