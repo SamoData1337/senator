@@ -147,6 +147,16 @@ const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
           </span>
         </div>
       )}
+
+      {/* Image Lightbox */}
+      <ImageLightbox
+        isOpen={lightboxOpen}
+        onClose={closeLightbox}
+        image={projects?.[selectedImageIndex]}
+        onPrevious={projects?.length > 1 ? goToPreviousImage : null}
+        onNext={projects?.length > 1 ? goToNextImage : null}
+        showNavigation={projects?.length > 1}
+      />
     </div>
   );
 };
