@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import ImageLightbox from './ImageLightbox';
 
 const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
   const { t, language } = useLanguage();
