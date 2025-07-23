@@ -101,8 +101,23 @@ const ServiceDetailPage = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-slate-950">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-24 pb-16 bg-slate-950 overflow-hidden">
+        {/* Background Image with Grid Pattern */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.pexels.com/photos/7614609/pexels-photo-7614609.jpeg"
+            alt="Built-in wardrobe"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/70" />
+        </div>
+
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 z-10 opacity-10">
+          <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEg0MFY0MEgwVjBaIiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0wIDBoNDB2MUgwVjB6TTAgMGgxdjQwSDBWMHoiIGZpbGw9IiNmZmZmZmYiLz4KPC9zdmc+')]" />
+        </div>
+
+        <div className="relative z-20 container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center px-4 py-2 bg-yellow-400/90 rounded-full mb-6">
               <span className="text-black text-sm font-bold">Naše služby</span>
@@ -110,7 +125,7 @@ const ServiceDetailPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {currentService.title}
             </h1>
-            <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+            <p className="text-xl text-slate-200 mb-8 leading-relaxed">
               {currentService.description}
             </p>
             <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold px-8 py-3 rounded-lg transition-all duration-300 shadow-lg">
