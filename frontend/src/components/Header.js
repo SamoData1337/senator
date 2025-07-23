@@ -6,6 +6,8 @@ import { Button } from './ui/button';
 const Header = () => {
   const { language, t, switchLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
     { key: 'home', href: '#home' },
@@ -16,9 +18,16 @@ const Header = () => {
   ];
 
   const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Check if we're on the home page
+    if (location.pathname === '/') {
+      // We're on home page, scroll to section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // We're on a different page, navigate to home page with hash
+      navigate(`/${href}`);
     }
     setIsMenuOpen(false);
   };
