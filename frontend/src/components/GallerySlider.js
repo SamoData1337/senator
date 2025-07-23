@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
   if (!projects || projects.length === 0) {
     return (
@@ -12,9 +14,8 @@ const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
     );
   }
 
-  // Group projects into rows of 3
-  const itemsPerRow = 3;
-  const itemsPerSlide = itemsPerRow * 2; // 2 rows
+  // Show 3 items per slide (1 row)
+  const itemsPerSlide = 3;
   const totalSlides = Math.ceil(projects.length / itemsPerSlide);
   
   const getCurrentSlideProjects = () => {
@@ -32,6 +33,28 @@ const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
+  };
+
+  const openLightbox = (projectIndex) => {
+    const globalIndex = currentSlide * itemsPerSlide + projectIndex;
+    setSelectedImageIndex(globalIndex);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const goToPreviousImage = () => {
+    setSelectedImageIndex(
+      selectedImageIndex === 0 ? projects.length - 1 : selectedImageIndex - 1
+    );
+  };
+
+  const goToNextImage = () => {
+    setSelectedImageIndex(
+      selectedImageIndex === projects.length - 1 ? 0 : selectedImageIndex + 1
+    );
   };
 
   return (
