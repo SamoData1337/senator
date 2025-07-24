@@ -6,6 +6,7 @@ const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
   const { t, language } = useLanguage();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const serviceNames = {
     sk: {
@@ -28,8 +29,31 @@ const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
 
   const displayName = serviceNames[language]?.[serviceName] || serviceName;
   
-  const openLightbox = (index) => {
-    setSelectedImageIndex(index);
+  // Slider configuration - 3 images per slide
+  const imagesPerSlide = 3;
+  const totalSlides = Math.ceil((projects?.length || 0) / imagesPerSlide);
+  
+  const getCurrentSlideProjects = () => {
+    if (!projects) return [];
+    const startIndex = currentSlide * imagesPerSlide;
+    return projects.slice(startIndex, startIndex + imagesPerSlide);
+  };
+
+  const goToPreviousSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? totalSlides - 1 : currentSlide - 1);
+  };
+
+  const goToNextSlide = () => {
+    setCurrentSlide(currentSlide === totalSlides - 1 ? 0 : currentSlide + 1);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+  
+  const openLightbox = (slideIndex) => {
+    const globalIndex = currentSlide * imagesPerSlide + slideIndex;
+    setSelectedImageIndex(globalIndex);
     setLightboxOpen(true);
   };
 
@@ -39,13 +63,13 @@ const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
 
   const goToPrevious = () => {
     setSelectedImageIndex(
-      selectedImageIndex === 0 ? projects.length - 1 : selectedImageIndex - 1
+      selectedImageIndex === 0 ? (projects?.length || 1) - 1 : selectedImageIndex - 1
     );
   };
 
   const goToNext = () => {
     setSelectedImageIndex(
-      selectedImageIndex === projects.length - 1 ? 0 : selectedImageIndex + 1
+      selectedImageIndex === (projects?.length || 1) - 1 ? 0 : selectedImageIndex + 1
     );
   };
   
