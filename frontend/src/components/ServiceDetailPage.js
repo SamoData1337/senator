@@ -140,21 +140,66 @@ const ServiceDetailPage = () => {
       <section className="py-16 bg-slate-900">
         <div className="container mx-auto px-4">
           {/* Features Section */}
-          <div className="max-w-4xl mx-auto mb-16">
+          <div className="max-w-6xl mx-auto mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Čo ponúkame</h2>
               <p className="text-slate-300 text-lg">Komplexné služby pre vašu spokojnosť</p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentService.features.map((feature, index) => (
-                <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-black text-lg font-bold">✓</span>
-                  </div>
-                  <h3 className="text-white font-bold mb-2">Kvalitná služba</h3>
-                  <p className="text-slate-300">{feature}</p>
+            
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* DIZAJN A KVALITA */}
+              <div>
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide border-b-2 border-yellow-400 pb-2 inline-block">
+                    Dizajn a kvalita
+                  </h3>
                 </div>
-              ))}
+                <div className="space-y-6">
+                  {currentService.features.slice(0, 3).map((feature, index) => {
+                    const designIcons = ['🎨', '📐', '✨'];
+                    return (
+                      <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20">
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
+                            <span className="text-2xl">{designIcons[index]}</span>
+                          </div>
+                          <div>
+                            <h4 className="text-white font-bold mb-2">Kvalitné riešenie</h4>
+                            <p className="text-slate-300">{feature}</p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* MONTÁŽ A SERVIS */}
+              <div>
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide border-b-2 border-yellow-400 pb-2 inline-block">
+                    Montáž a servis
+                  </h3>
+                </div>
+                <div className="space-y-6">
+                  {currentService.features.slice(3, 5).map((feature, index) => {
+                    const serviceIcons = ['🔧', '🛠️'];
+                    return (
+                      <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20">
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
+                            <span className="text-2xl">{serviceIcons[index]}</span>
+                          </div>
+                          <div>
+                            <h4 className="text-white font-bold mb-2">Profesionálny servis</h4>
+                            <p className="text-slate-300">{feature}</p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
 
