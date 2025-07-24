@@ -210,15 +210,18 @@ const ServiceDetailPage = () => {
               <p className="text-slate-300 text-lg">Krok za krokom k vašej dokonalej skrini</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentService.process.map((step, index) => (
-                <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-black text-lg font-bold">{index + 1}</span>
+              {currentService.process.map((step, index) => {
+                const processIcons = ['📋', '🎯', '🏗️', '🔨', '✅'];
+                return (
+                  <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20">
+                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mb-4 shadow-lg">
+                      <span className="text-2xl">{processIcons[index] || '📌'}</span>
+                    </div>
+                    <h3 className="text-white font-bold mb-2">Krok {index + 1}</h3>
+                    <p className="text-slate-300">{step}</p>
                   </div>
-                  <h3 className="text-white font-bold mb-2">Krok {index + 1}</h3>
-                  <p className="text-slate-300">{step}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
