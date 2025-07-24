@@ -92,34 +92,86 @@ const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
 
       {/* Gallery Grid */}
       {projects && projects.length > 0 ? (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {projects.slice(0, 6).map((project, index) => (
-            <div
-              key={project.id}
-              onClick={() => openLightbox(index)}
-              className="group relative bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 cursor-pointer"
-            >
-              <div className="aspect-video relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                {/* Click to enlarge indicator */}
-                <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-white text-sm">🔍</span>
+        <div className="relative mb-8">
+          {/* Slider Container */}
+          <div className="relative overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getCurrentSlideProjects().map((project, index) => (
+                <div
+                  key={`${currentSlide}-${project.id}-${index}`}
+                  onClick={() => openLightbox(index)}
+                  className="group relative bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="aspect-video relative overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Click to enlarge indicator */}
+                    <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-white text-sm">🔍</span>
+                    </div>
+                    
+                    {/* Overlay Content */}
+                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 className="text-white font-bold text-sm mb-1">{project.title}</h3>
+                      <p className="text-slate-300 text-xs">{project.description}</p>
+                    </div>
+                  </div>
                 </div>
-                
-                {/* Overlay Content */}
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h3 className="text-white font-bold text-sm mb-1">{project.title}</h3>
-                  <p className="text-slate-300 text-xs">{project.description}</p>
-                </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          {totalSlides > 1 && (
+            <>
+              <button
+                onClick={goToPreviousSlide}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-yellow-400/90 hover:bg-yellow-400 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg z-10"
+                aria-label="Previous slide"
+              >
+                <span className="text-black font-bold text-xl">‹</span>
+              </button>
+              <button
+                onClick={goToNextSlide}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-yellow-400/90 hover:bg-yellow-400 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg z-10"
+                aria-label="Next slide"
+              >
+                <span className="text-black font-bold text-xl">›</span>
+              </button>
+            </>
+          )}
+
+          {/* Dots Indicator */}
+          {totalSlides > 1 && (
+            <div className="flex justify-center space-x-2 mt-6">
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? 'bg-yellow-400 scale-110'
+                      : 'bg-slate-600 hover:bg-slate-500'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Slide Counter */}
+          {totalSlides > 1 && (
+            <div className="text-center mt-2">
+              <span className="text-slate-400 text-sm">
+                {currentSlide + 1} z {totalSlides}
+              </span>
+            </div>
+          )}
         </div>
       ) : (
         <div className="text-center py-12">
