@@ -1,28 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { portfolioItems } from '../data/mock';
-import Modal from './Modal';
-import ServiceGallery from './ServiceGallery';
 
 const Services = () => {
   const { t } = useLanguage();
-  const [selectedService, setSelectedService] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Map service titles to portfolio categories
-  const serviceToCategory = {
-    'Vstavané skrine': 'Vstavané skrine',
-    'Šatníky': 'Šatníky',
-    'Deliace priečky': 'Deliace priečky', 
-    'Prechodové dvere': 'Prechodové dvere',
-    'Komody, nábytok a iné': 'Nábytok',
-    'Postele': 'Postele'
-  };
-
-  const handleServiceClick = (serviceTitle) => {
-    setSelectedService(serviceTitle);
-    setIsModalOpen(true);
-  };
 
   // Function to convert Slovak text to URL-friendly slug
   const createSlug = (text) => {
@@ -46,16 +26,9 @@ const Services = () => {
       .replace(/^-|-$/g, '');
   };
 
-  const handleViewAll = () => {
-    setIsModalOpen(false);
-    // Navigate to dedicated service page with proper slug
-    const slug = createSlug(selectedService);
+  const handleServiceClick = (serviceTitle) => {
+    const slug = createSlug(serviceTitle);
     window.location.href = `/services/${slug}`;
-  };
-
-  const getProjectsForService = (serviceTitle) => {
-    const category = serviceToCategory[serviceTitle];
-    return portfolioItems.filter(item => item.category === category);
   };
 
   return (
@@ -96,27 +69,12 @@ const Services = () => {
 
               {/* Learn More Link */}
               <div className="flex items-center gap-2 text-slate-400 group-hover:text-yellow-400 transition-colors">
-                <span className="text-sm font-medium">Zobraziť galériu</span>
+                <span className="text-sm font-medium">Zobraziť službu</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Service Gallery Modal */}
-        <Modal 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)}
-          size="full"
-        >
-          {selectedService && (
-            <ServiceGallery 
-              serviceName={selectedService}
-              projects={getProjectsForService(selectedService)}
-              onViewAll={handleViewAll}
-            />
-          )}
-        </Modal>
       </div>
     </section>
   );
