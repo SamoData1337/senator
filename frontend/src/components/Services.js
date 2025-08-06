@@ -69,27 +69,12 @@ const Services = () => {
 
               {/* Learn More Link */}
               <div className="flex items-center gap-2 text-slate-400 group-hover:text-yellow-400 transition-colors">
-                <span className="text-sm font-medium">Zobraziť galériu</span>
+                <span className="text-sm font-medium">Zobraziť službu</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Service Gallery Modal */}
-        <Modal 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)}
-          size="full"
-        >
-          {selectedService && (
-            <ServiceGallery 
-              serviceName={selectedService}
-              projects={getProjectsForService(selectedService)}
-              onViewAll={handleViewAll}
-            />
-          )}
-        </Modal>
       </div>
     </section>
   );
