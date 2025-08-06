@@ -7,12 +7,63 @@ import ServiceGallery from './ServiceGallery';
 const Portfolio = () => {
   const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('Všetky');
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const categories = t('portfolio.categories');
   
   const filteredItems = activeCategory === 'Všetky' || activeCategory === 'All'
     ? portfolioItems
     : portfolioItems.filter(item => item.category === activeCategory);
+
+  // Map category names to service names for modal
+  const categoryToService = {
+    'Vstavané skrine': 'Vstavané skrine',
+    'Šatníky': 'Šatníky',
+    'Deliace priečky': 'Deliace priečky', 
+    'Prechodové dvere': 'Prechodové dvere',
+    'Nábytok': 'Komody, nábytok a iné',
+    'Postele': 'Postele'
+  };
+
+  const handleProjectClick = (project) => {
+    const serviceName = categoryToService[project.category] || project.category;
+    setSelectedCategory(serviceName);
+    setIsModalOpen(true);
+  };
+
+  const handleViewAll = () => {
+    setIsModalOpen(false);
+    // Convert service name to slug and navigate
+    const createSlug = (text) => {
+      const accents = {
+        'á': 'a', 'ä': 'a', 'č': 'c', 'ď': 'd', 'é': 'e', 'ě': 'e',
+        'í': 'i', 'ľ': 'l', 'ĺ': 'l', 'ň': 'n', 'ó': 'o', 'ô': 'o',
+        'ŕ': 'r', 'š': 's', 'ť': 't', 'ú': 'u', 'ů': 'u', 'ý': 'y',
+        'ž': 'z', 'Á': 'A', 'Ä': 'A', 'Č': 'C', 'Ď': 'D', 'É': 'E',
+        'Ě': 'E', 'Í': 'I', 'Ľ': 'L', 'Ĺ': 'L', 'Ň': 'N', 'Ó': 'O',
+        'Ô': 'O', 'Ŕ': 'R', 'Š': 'S', 'Ť': 'T', 'Ú': 'U', 'Ů': 'U',
+        'Ý': 'Y', 'Ž': 'Z'
+      };
+      
+      return text
+        .split('')
+        .map(char => accents[char] || char)
+        .join('')
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    };
+
+    const slug = createSlug(selectedCategory);
+    window.location.href = `/services/${slug}`;
+  };
+
+  const getProjectsForCategory = (serviceName) => {
+    const category = Object.keys(categoryToService).find(key => categoryToService[key] === serviceName);
+    return portfolioItems.filter(item => item.category === category);
+  };
 
   return (
     <section id="portfolio" className="py-20 bg-slate-950">
