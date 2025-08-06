@@ -102,7 +102,8 @@ const Portfolio = () => {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105"
+              onClick={() => handleProjectClick(item)}
+              className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
             >
               {/* Image */}
               <div className="relative overflow-hidden">
@@ -112,6 +113,11 @@ const Portfolio = () => {
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Click to view gallery indicator */}
+                <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white text-sm">📸</span>
+                </div>
                 
                 {/* Overlay Content */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -134,6 +140,21 @@ const Portfolio = () => {
             </div>
           ))}
         </div>
+
+        {/* Portfolio Gallery Modal */}
+        <Modal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)}
+          size="full"
+        >
+          {selectedCategory && (
+            <ServiceGallery 
+              serviceName={selectedCategory}
+              projects={getProjectsForCategory(selectedCategory)}
+              onViewAll={handleViewAll}
+            />
+          )}
+        </Modal>
       </div>
     </section>
   );
