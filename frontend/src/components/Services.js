@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { portfolioItems } from '../data/mock';
-import Modal from './Modal';
-import ServiceGallery from './ServiceGallery';
 
 const Services = () => {
   const { t } = useLanguage();
