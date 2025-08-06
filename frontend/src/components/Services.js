@@ -6,23 +6,6 @@ import ServiceGallery from './ServiceGallery';
 
 const Services = () => {
   const { t } = useLanguage();
-  const [selectedService, setSelectedService] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Map service titles to portfolio categories
-  const serviceToCategory = {
-    'Vstavané skrine': 'Vstavané skrine',
-    'Šatníky': 'Šatníky',
-    'Deliace priečky': 'Deliace priečky', 
-    'Prechodové dvere': 'Prechodové dvere',
-    'Komody, nábytok a iné': 'Nábytok',
-    'Postele': 'Postele'
-  };
-
-  const handleServiceClick = (serviceTitle) => {
-    setSelectedService(serviceTitle);
-    setIsModalOpen(true);
-  };
 
   // Function to convert Slovak text to URL-friendly slug
   const createSlug = (text) => {
@@ -46,16 +29,9 @@ const Services = () => {
       .replace(/^-|-$/g, '');
   };
 
-  const handleViewAll = () => {
-    setIsModalOpen(false);
-    // Navigate to dedicated service page with proper slug
-    const slug = createSlug(selectedService);
+  const handleServiceClick = (serviceTitle) => {
+    const slug = createSlug(serviceTitle);
     window.location.href = `/services/${slug}`;
-  };
-
-  const getProjectsForService = (serviceTitle) => {
-    const category = serviceToCategory[serviceTitle];
-    return portfolioItems.filter(item => item.category === category);
   };
 
   return (
