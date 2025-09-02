@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase/config';
-import { mockData } from '../data/mock';
+import { translations } from '../data/mock';
 
 const PhotoUpload = ({ onPhotoUploaded }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
