@@ -125,23 +125,23 @@ class BackendTester:
     def test_cors_headers(self):
         """Test CORS configuration"""
         try:
-            response = requests.options(f"{self.base_url}/", timeout=10)
-            cors_headers = {
-                'Access-Control-Allow-Origin': response.headers.get('Access-Control-Allow-Origin'),
-                'Access-Control-Allow-Methods': response.headers.get('Access-Control-Allow-Methods'),
-                'Access-Control-Allow-Headers': response.headers.get('Access-Control-Allow-Headers')
+            # Test with Origin header to trigger CORS response
+            headers = {
+                'Origin': 'https://example.com',
+                'Access-Control-Request-Method': 'GET'
             }
+            response = requests.get(f"{self.base_url}/", headers=headers, timeout=10)
             
-            if any(cors_headers.values()):
-                self.log_test("CORS Configuration", True, "CORS headers present", f"Headers: {cors_headers}")
+            cors_origin = response.headers.get('Access-Control-Allow-Origin')
+            cors_credentials = response.headers.get('Access-Control-Allow-Credentials')
+            
+            if cors_origin:
+                cors_info = f"Allow-Origin: {cors_origin}"
+                if cors_credentials:
+                    cors_info += f", Allow-Credentials: {cors_credentials}"
+                self.log_test("CORS Configuration", True, "CORS properly configured", cors_info)
             else:
-                # Try a regular GET request to check CORS headers
-                response = requests.get(f"{self.base_url}/", timeout=10)
-                cors_origin = response.headers.get('Access-Control-Allow-Origin')
-                if cors_origin:
-                    self.log_test("CORS Configuration", True, "CORS configured", f"Allow-Origin: {cors_origin}")
-                else:
-                    self.log_test("CORS Configuration", False, "No CORS headers found", "This might cause frontend issues")
+                self.log_test("CORS Configuration", False, "No CORS headers found", "This might cause frontend issues")
         except requests.exceptions.RequestException as e:
             self.log_test("CORS Configuration", False, "Failed to test CORS", str(e))
     
