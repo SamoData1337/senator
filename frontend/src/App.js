@@ -47,15 +47,23 @@ const Home = () => {
 function App() {
   return (
     <LanguageProvider>
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services/:serviceSlug" element={<ServiceDetailPage />} />
-          </Routes>
-        </BrowserRouter>
-        <Toaster />
-      </div>
+      <AuthProvider>
+        <div className="App">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services/:serviceSlug" element={<ServiceDetailPage />} />
+              <Route path="/admin/login" element={<Login />} />
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </BrowserRouter>
+          <Toaster />
+        </div>
+      </AuthProvider>
     </LanguageProvider>
   );
 }
