@@ -9,11 +9,32 @@ const PhotoGallery = () => {
   const [loading, setLoading] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
+  const createSlug = (text) => {
+    const accents = {
+      'á': 'a', 'ä': 'a', 'č': 'c', 'ď': 'd', 'é': 'e', 'ě': 'e',
+      'í': 'i', 'ľ': 'l', 'ĺ': 'l', 'ň': 'n', 'ó': 'o', 'ô': 'o',
+      'ŕ': 'r', 'š': 's', 'ť': 't', 'ú': 'u', 'ů': 'u', 'ý': 'y',
+      'ž': 'z', 'Á': 'A', 'Ä': 'A', 'Č': 'C', 'Ď': 'D', 'É': 'E',
+      'Ě': 'E', 'Í': 'I', 'Ľ': 'L', 'Ĺ': 'L', 'Ň': 'N', 'Ó': 'O',
+      'Ô': 'O', 'Ŕ': 'R', 'Š': 'S', 'Ť': 'T', 'Ú': 'U', 'Ů': 'U',
+      'Ý': 'Y', 'Ž': 'Z'
+    };
+    
+    return text
+      .split('')
+      .map(char => accents[char] || char)
+      .join('')
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  };
+
   const categories = [
     { id: 'all', name: 'Všetky fotografie' },
-    ...mockData.services.map(service => ({
-      id: service.slug,
-      name: service.title.sk
+    ...translations.sk.services.items.map(service => ({
+      id: createSlug(service.title),
+      name: service.title
     }))
   ];
 
