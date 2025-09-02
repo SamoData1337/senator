@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ref, deleteObject } from 'firebase/storage';
 import { storage } from '../firebase/config';
-import { mockData } from '../data/mock';
+import { translations } from '../data/mock';
 
 const PhotoGallery = () => {
   const [photos, setPhotos] = useState([]);
