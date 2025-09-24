@@ -22,7 +22,7 @@ const Portfolio = () => {
     'Šatníky': 'Šatníky',
     'Deliace priečky': 'Deliace priečky', 
     'Prechodové dvere': 'Prechodové dvere',
-    'Komody a nábytok': 'Komody a nábytok',
+    'Nábytok': 'Komody, nábytok a iné',
     'Postele': 'Postele'
   };
 
@@ -34,13 +34,35 @@ const Portfolio = () => {
 
   const handleViewAll = () => {
     setIsModalOpen(false);
+    // Convert service name to slug and navigate
+    const createSlug = (text) => {
+      const accents = {
+        'á': 'a', 'ä': 'a', 'č': 'c', 'ď': 'd', 'é': 'e', 'ě': 'e',
+        'í': 'i', 'ľ': 'l', 'ĺ': 'l', 'ň': 'n', 'ó': 'o', 'ô': 'o',
+        'ŕ': 'r', 'š': 's', 'ť': 't', 'ú': 'u', 'ů': 'u', 'ý': 'y',
+        'ž': 'z', 'Á': 'A', 'Ä': 'A', 'Č': 'C', 'Ď': 'D', 'É': 'E',
+        'Ě': 'E', 'Í': 'I', 'Ľ': 'L', 'Ĺ': 'L', 'Ň': 'N', 'Ó': 'O',
+        'Ô': 'O', 'Ŕ': 'R', 'Š': 'S', 'Ť': 'T', 'Ú': 'U', 'Ů': 'U',
+        'Ý': 'Y', 'Ž': 'Z'
+      };
+      
+      return text
+        .split('')
+        .map(char => accents[char] || char)
+        .join('')
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    };
+
     const slug = createSlug(selectedCategory);
     window.location.href = `/services/${slug}`;
   };
 
   const getProjectsForCategory = (serviceName) => {
     const category = Object.keys(categoryToService).find(key => categoryToService[key] === serviceName);
-    return portfolioData.filter(item => item.category === category);
+    return portfolioItems.filter(item => item.category === category);
   };
 
   return (
