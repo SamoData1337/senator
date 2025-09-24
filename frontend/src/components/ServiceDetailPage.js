@@ -1,7 +1,6 @@
 import React from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { portfolioItems } from '../data/mock';
 import Header from './Header';
 import Footer from './Footer';
 import GallerySlider from './GallerySlider';
