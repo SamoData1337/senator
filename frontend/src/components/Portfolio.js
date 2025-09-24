@@ -115,7 +115,7 @@ const Portfolio = () => {
                 {/* Image */}
                 <div className="relative overflow-hidden">
                   <img
-                    src={item.url}
+                    src={item.image}
                     alt={item.title}
                     className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                   />
