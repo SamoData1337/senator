@@ -3,11 +3,32 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { loadCategoryImages, createSlug } from '../utils/imageLoader';
 import ImageLightbox from './ImageLightbox';
 
-const ServiceGallery = ({ serviceName, projects, onViewAll }) => {
+const ServiceGallery = ({ serviceName, onViewAll }) => {
   const { t, language } = useLanguage();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load images for the specific service category
+  useEffect(() => {
+    const loadServiceImages = async () => {
+      try {
+        const categorySlug = createSlug(serviceName);
+        const categoryImages = await loadCategoryImages(categorySlug);
+        setProjects(categoryImages);
+      } catch (error) {
+        console.error('Error loading service images:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (serviceName) {
+      loadServiceImages();
+    }
+  }, [serviceName]);
 
   const serviceNames = {
     sk: {
