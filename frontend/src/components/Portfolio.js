@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { loadAllPortfolioImages, getAvailableCategories, getCategoryDisplayName, createSlug } from '../utils/imageLoader';
+import { portfolioData } from '../data/portfolioData';
+import { getCategoryDisplayName, createSlug } from '../utils/imageLoader';
 import Modal from './Modal';
 import ServiceGallery from './ServiceGallery';
 
