@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { loadCategoryImages } from '../utils/imageLoader';
 import ImageLightbox from './ImageLightbox';
 
 const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
