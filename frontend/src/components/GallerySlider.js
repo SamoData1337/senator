@@ -1,30 +1,10 @@
 import React, { useState } from 'react';
 import ImageLightbox from './ImageLightbox';
 
-const GallerySlider = ({ categorySlug, title = "Naše realizácie" }) => {
+const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Load images for the category
-  useEffect(() => {
-    const loadImages = async () => {
-      if (!categorySlug) return;
-      
-      try {
-        const categoryImages = await loadCategoryImages(categorySlug);
-        setProjects(categoryImages);
-      } catch (error) {
-        console.error('Error loading gallery images:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadImages();
-  }, [categorySlug]);
   
   if (loading) {
     return (
