@@ -9,12 +9,31 @@ const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('Všetky');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [portfolioItems, setPortfolioItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const categories = t('portfolio.categories');
+
+  // Load images from folder structure on component mount
+  useEffect(() => {
+    const loadImages = async () => {
+      try {
+        const availableCategories = getAvailableCategories();
+        const allImages = await loadAllPortfolioImages(availableCategories);
+        setPortfolioItems(allImages);
+      } catch (error) {
+        console.error('Error loading portfolio images:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadImages();
+  }, []);
   
   const filteredItems = activeCategory === 'Všetky' || activeCategory === 'All'
     ? portfolioItems
-    : portfolioItems.filter(item => item.category === activeCategory);
+    : portfolioItems.filter(item => getCategoryDisplayName(item.category) === activeCategory);
 
   // Map category names to service names for modal
   const categoryToService = {
