@@ -28,8 +28,7 @@ const Portfolio = () => {
   };
 
   const handleProjectClick = (project) => {
-    const displayName = getCategoryDisplayName(project.category);
-    const serviceName = categoryToService[displayName] || displayName;
+    const serviceName = categoryToService[project.category] || project.category;
     setSelectedCategory(serviceName);
     setIsModalOpen(true);
   };
@@ -42,8 +41,7 @@ const Portfolio = () => {
 
   const getProjectsForCategory = (serviceName) => {
     const category = Object.keys(categoryToService).find(key => categoryToService[key] === serviceName);
-    const categorySlug = createSlug(category);
-    return portfolioItems.filter(item => item.category === categorySlug);
+    return portfolioData.filter(item => item.category === category);
   };
 
   return (
