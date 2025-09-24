@@ -77,12 +77,7 @@ const Portfolio = () => {
         </div>
 
         {/* Portfolio Grid */}
-        {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
-            <span className="ml-3 text-slate-400">Načítavanie realizácií...</span>
-          </div>
-        ) : filteredItems.length === 0 ? (
+        {filteredItems.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-slate-400 text-lg">
               {activeCategory === 'Všetky' ? 'Žiadne realizácie' : `Žiadne realizácie v kategórii "${activeCategory}"`}
@@ -120,7 +115,7 @@ const Portfolio = () => {
 
                 {/* Content */}
                 <div className="p-6">
-                  <div className="text-sm text-yellow-400 mb-2 font-medium">{getCategoryDisplayName(item.category)}</div>
+                  <div className="text-sm text-yellow-400 mb-2 font-medium">{item.category}</div>
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
                     {item.title}
                   </h3>
