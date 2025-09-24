@@ -230,7 +230,7 @@ const ServiceDetailPage = () => {
       {/* Gallery */}
       <section className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
-          <GallerySlider projects={projects} />
+          <GallerySlider categorySlug={serviceSlug} />
         </div>
       </section>
 
