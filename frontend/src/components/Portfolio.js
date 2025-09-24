@@ -97,48 +97,61 @@ const Portfolio = () => {
         </div>
 
         {/* Portfolio Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => handleProjectClick(item)}
-              className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
-            >
-              {/* Image */}
-              <div className="relative overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                {/* Click to view gallery indicator */}
-                <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-white text-sm">📸</span>
-                </div>
-                
-                {/* Overlay Content */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-12 h-12 bg-yellow-400/80 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer hover:bg-yellow-400 transition-colors">
-                    <span className="text-black text-xl font-bold">↗</span>
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
+            <span className="ml-3 text-slate-400">Načítavanie realizácií...</span>
+          </div>
+        ) : filteredItems.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-slate-400 text-lg">
+              {activeCategory === 'Všetky' ? 'Žiadne realizácie' : `Žiadne realizácie v kategórii "${activeCategory}"`}
+            </p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredItems.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => handleProjectClick(item)}
+                className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
+              >
+                {/* Image */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={item.url}
+                    alt={item.title}
+                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Click to view gallery indicator */}
+                  <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-white text-sm">📸</span>
+                  </div>
+                  
+                  {/* Overlay Content */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-12 h-12 bg-yellow-400/80 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer hover:bg-yellow-400 transition-colors">
+                      <span className="text-black text-xl font-bold">↗</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <div className="text-sm text-yellow-400 mb-2 font-medium">{item.category}</div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-slate-300 leading-relaxed">
-                  {item.description}
-                </p>
+                {/* Content */}
+                <div className="p-6">
+                  <div className="text-sm text-yellow-400 mb-2 font-medium">{getCategoryDisplayName(item.category)}</div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Portfolio Gallery Modal */}
         <Modal 
