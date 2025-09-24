@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { loadCategoryImages, createSlug } from '../utils/imageLoader';
 import ImageLightbox from './ImageLightbox';
 
 const ServiceGallery = ({ serviceName, onViewAll }) => {
