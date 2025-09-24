@@ -3,39 +3,29 @@
 /**
  * Dynamically discover images in a category folder
  * @param {string} category - The service category (e.g., 'vstavane-skrine')
- * @param {number} maxImages - Maximum number of images to check (default: 20)
+ * @param {number} maxImages - Maximum number of images to check (default: 10)
  * @returns {Promise<Array>} - Array of image objects with url and metadata
  */
-export const loadCategoryImages = async (category, maxImages = 20) => {
+export const loadCategoryImages = async (category, maxImages = 10) => {
   const images = [];
   const basePath = `/images/portfolio/${category}`;
   
-  // Common image extensions to check
+  // For now, assume images follow the pattern image-1.jpg, image-2.jpg, etc.
+  // We'll check for common extensions but not test if they exist to avoid performance issues
   const extensions = ['jpg', 'jpeg', 'png', 'webp'];
   
   for (let i = 1; i <= maxImages; i++) {
-    for (const ext of extensions) {
-      const imagePath = `${basePath}/image-${i}.${ext}`;
-      
-      try {
-        // Check if image exists by creating an image element
-        const imageExists = await checkImageExists(imagePath);
-        if (imageExists) {
-          images.push({
-            id: `${category}-${i}`,
-            url: imagePath,
-            category: category,
-            filename: `image-${i}.${ext}`,
-            title: `${getCategoryDisplayName(category)} - Foto ${i}`,
-            description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
-          });
-          break; // Found image with this number, move to next
-        }
-      } catch (error) {
-        // Image doesn't exist, continue
-        continue;
-      }
-    }
+    // Try jpg first as it's most common
+    const imagePath = `${basePath}/image-${i}.jpg`;
+    
+    images.push({
+      id: `${category}-${i}`,
+      url: imagePath,
+      category: category,
+      filename: `image-${i}.jpg`,
+      title: `${getCategoryDisplayName(category)} - Foto ${i}`,
+      description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
+    });
   }
   
   return images;
