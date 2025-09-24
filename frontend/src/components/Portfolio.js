@@ -41,12 +41,13 @@ const Portfolio = () => {
     'Šatníky': 'Šatníky',
     'Deliace priečky': 'Deliace priečky', 
     'Prechodové dvere': 'Prechodové dvere',
-    'Nábytok': 'Komody, nábytok a iné',
+    'Komody a nábytok': 'Komody a nábytok',
     'Postele': 'Postele'
   };
 
   const handleProjectClick = (project) => {
-    const serviceName = categoryToService[project.category] || project.category;
+    const displayName = getCategoryDisplayName(project.category);
+    const serviceName = categoryToService[displayName] || displayName;
     setSelectedCategory(serviceName);
     setIsModalOpen(true);
   };
