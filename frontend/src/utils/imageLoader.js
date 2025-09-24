@@ -32,20 +32,6 @@ export const loadCategoryImages = async (category, maxImages = 10) => {
 };
 
 /**
- * Check if an image exists at the given path
- * @param {string} imagePath - Path to the image
- * @returns {Promise<boolean>} - True if image exists
- */
-const checkImageExists = (imagePath) => {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => resolve(true);
-    img.onerror = () => resolve(false);
-    img.src = imagePath;
-  });
-};
-
-/**
  * Load all images from multiple categories
  * @param {Array<string>} categories - Array of category names
  * @returns {Promise<Array>} - Array of all images from all categories
