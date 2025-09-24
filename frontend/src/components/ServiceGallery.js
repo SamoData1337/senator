@@ -126,7 +126,7 @@ const ServiceGallery = ({ serviceName, onViewAll }) => {
                 >
                   <div className="aspect-video relative overflow-hidden">
                     <img
-                      src={project.image}
+                      src={project.url}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
