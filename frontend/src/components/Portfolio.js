@@ -13,8 +13,8 @@ const Portfolio = () => {
   const categories = t('portfolio.categories');
   
   const filteredItems = activeCategory === 'Všetky' || activeCategory === 'All'
-    ? portfolioData
-    : portfolioData.filter(item => item.category === activeCategory);
+    ? portfolioItems
+    : portfolioItems.filter(item => item.category === activeCategory);
 
   // Map category names to service names for modal
   const categoryToService = {
