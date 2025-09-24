@@ -30,8 +30,6 @@ const ServiceDetailPage = () => {
   };
 
   const serviceName = slugToService[serviceSlug];
-  const category = serviceToCategory[serviceName];
-  const projects = portfolioItems.filter(item => item.category === category);
 
   if (!serviceName) {
     return (
