@@ -21,7 +21,18 @@ const ServiceDetailPage = () => {
     'postele': 'Postele'
   };
 
+  const serviceToCategory = {
+    'Vstavané skrine': 'Vstavané skrine',
+    'Šatníky': 'Šatníky',
+    'Deliace priečky': 'Deliace priečky', 
+    'Prechodové dvere': 'Prechodové dvere',
+    'Komody, nábytok a iné': 'Nábytok',
+    'Postele': 'Postele'
+  };
+
   const serviceName = slugToService[serviceSlug];
+  const category = serviceToCategory[serviceName];
+  const projects = portfolioItems.filter(item => item.category === category);
 
   if (!serviceName) {
     return (
