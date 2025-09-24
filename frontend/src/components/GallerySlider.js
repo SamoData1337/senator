@@ -6,15 +6,6 @@ const GallerySlider = ({ projects, title = "Naše realizácie" }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
-  if (loading) {
-    return (
-      <div className="text-center py-16">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
-        <p className="text-slate-400">Načítavanie galérie...</p>
-      </div>
-    );
-  }
-  
   if (!projects || projects.length === 0) {
     return (
       <div className="text-center py-16">
