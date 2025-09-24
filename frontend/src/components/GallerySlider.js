@@ -109,7 +109,7 @@ const GallerySlider = ({ categorySlug, title = "Naše realizácie" }) => {
               {/* Larger aspect ratio for bigger images */}
               <div className="aspect-[4/3] relative overflow-hidden">
                 <img
-                  src={project.image}
+                  src={project.url}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
