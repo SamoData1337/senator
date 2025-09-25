@@ -11,7 +11,7 @@ from datetime import datetime
 import uuid
 
 # Backend URL from environment
-BACKEND_URL = "https://senator-redesign.preview.emergentagent.com/api"
+BACKEND_URL = "https://industrial-portfolio.preview.emergentagent.com/api"
 
 class BackendTester:
     def __init__(self):

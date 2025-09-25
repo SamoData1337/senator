@@ -1,136 +1,88 @@
 <analysis>
-The AI engineer successfully transformed the  website into a modern, industrial-themed, bilingual (Slovak/English) React frontend with mock data. The development was highly iterative, starting with basic design, then refining it based on user feedback regarding colors (initially dark zinc, then amber/brown, finally yellow/slate matching the logo). Key challenges included fixing frontend build errors due to missing UI components and an incorrect  hook, and addressing a critical slug generation issue for Slovak characters in dedicated service pages. The AI then implemented complex UI features like image sliders for the 'About' section, a dual-experience for 'Services' (modal galleries and dedicated pages), and a flexible lightbox for image viewing. Finally, navigation links were fixed to work consistently across the site, and the 'Čo ponúkame' section was restructured with categories and icons, while the Services and Portfolio sections' interaction flows were refined for better user experience. The process involved extensive file modifications and creation of new components, all validated with screenshots.
+The AI engineer's work began by transforming the  website into a modern, industrial-themed, bilingual React frontend. Initial iterations focused on design, colors, and fixing critical frontend issues. Later, complex UI features like image sliders and dual-experience service sections were implemented. The most recent significant work involved integrating Firebase Authentication for an admin dashboard, initially with Firebase Storage in mind for photo management. However, the user then requested a shift to a folder-based image loading system using the  directory, skipping backend integration for now. This led to the creation of dynamic image loading utilities and component updates. A crucial pivot occurred when the user explicitly rejected the new portfolio categories introduced by the AI during dynamic image implementation, prompting a full rollback to the original  data structure for the Naše realizácie section, while keeping Firebase authentication. The AI is now awaiting user verification of the restored state.
 </analysis>
 
 <product_requirements>
-The initial request was to rebuild the  website into a modern design. The company specializes in selling Senator hardware, manufacturing built-in wardrobes, and custom furniture. Key clarification requests by the AI led to the following requirements: the site should be mainly in Slovak with an English option, follow an industrial design aesthetic, target individual consumers, and not include new features like configurators initially.
-
-Subsequent requirements included:
-- Making the hero background image more visible and changing the color scheme from dark zinc to natural brown/amber.
-- Optimizing the colors to precisely match the Senator company logo (yellow/golden, black text, metallic silver/gray).
-- Adding an image slider to the About company section to showcase multiple pictures.
-- For the Naše služby section, implementing a dual experience: a modal gallery for quick views and dedicated service pages for detailed information, accessible via a View All Projects button.
-- Fixing the Služba nenájdená error on dedicated service pages due to incorrect slug generation for Slovak characters.
-- For the dedicated service pages (e.g., ):
-    - Applying the same tiles background style as the landing page hero section.
-    - Restructuring the Proces and Čo ponúkame sections to be stacked (under each other).
-    - Making the Naše realizácie section a gallery with a slider, initially requested as 2 rows, then changed to 1 row with larger pictures.
-- Fixing header menu links to work correctly from dedicated service pages (navigating to home with hash) and ensuring the Kontaktovať nás button directly scrolls to the contact section.
-- Enabling images in modal windows to open larger in a lightbox.
-- Changing the modal window gallery to be a max of 1 row using a slider.
-- Restructuring the Čo ponúkame section on service detail pages into two categories (DIZAJN A KVALITA, MONTÁŽ A SERVIS) with icons and box shadows for tiles.
-- Revising the UX for Naše služby to directly navigate to service pages (no modal) and Naše realizácie to open a modal gallery.
+The goal was to rebuild  into a modern, industrial, bilingual (Slovak/English) React application for Senator hardware and custom furniture. Initially, core requirements included:
+- Enhanced visibility for the hero background image.
+- A color scheme matching the Senator logo (yellow/golden, black text, metallic silver/gray).
+- An image slider for the About section.
+- A dual experience for Naše služby (Our Services): modal galleries for quick views and dedicated service pages () for details, fixing slug generation for Slovak characters.
+- Dedicated service pages required a tiled background, vertically stacked Proces and Čo ponúkame sections, and a slider gallery for Naše realizácie (initially 2 rows, then 1 row, then dynamic folder-based).
+- Header menu links and Kontaktovať nás button needed consistent navigation.
+- Lightbox functionality for modal images.
+- Čo ponúkame restructured with categories, icons, and box shadows.
+- UX for Naše služby changed to directly navigate to detail pages, while Naše realizácie opened a modal gallery.
+- Later, an admin dashboard with email/password Firebase authentication ( leading to ) was requested for uploading product photos.
+- The photo storage strategy shifted from Firebase Storage to local FTP (public folder) for dynamic loading.
+- Finally, the user explicitly requested reverting the Naše realizácie section to its *original* categories and data, discarding the newly introduced dynamic categories, while keeping Firebase authentication.
 </product_requirements>
 
 <key_technical_concepts>
-- **React Frontend**: Main application UI framework.
-- **FastAPI Backend**: Python-based API for backend logic (initially just a placeholder).
-- **MongoDB Database**: Used by FastAPI for data storage (initially just a placeholder).
-- **Tailwind CSS**: Utility-first CSS framework for styling and responsiveness.
-- **React Router**: For client-side routing and dedicated pages.
-- **, **: React Router hooks for programmatic navigation and URL parsing.
-- **Image Sliders**: Custom implementations using  for galleries.
-- **Image Lightbox**: Custom component for full-screen image viewing.
-- **Component-based Architecture**: Reusable UI components for modularity.
-- **Environment Variables**: For secure configuration of URLs (, ).
-- **Slug Generation**: Custom function to handle Slovak characters for SEO-friendly URLs.
-- **Radix UI components**: Used for various UI elements (e.g., Button, Input, Toast).
+- **React Frontend**: Primary UI framework.
+- **FastAPI Backend**: Python API (initially placeholder, later considered for file upload).
+- **MongoDB**: Database (placeholder).
+- **Tailwind CSS**: Styling.
+- **React Router**: Client-side routing.
+- **Firebase Authentication**: Email/password admin login.
+- **Component-based Architecture**: Modular development.
+- **Environment Variables**: Configuration.
+- **Slug Generation**: SEO-friendly URLs.
+- **Image Sliders/Lightbox**: Custom components for galleries.
+- **Folder-based Image Loading**: Dynamic image display from public directories.
 </key_technical_concepts>
 
 <code_architecture>
-
-The application follows a full-stack architecture: React for the frontend, FastAPI for the backend, and MongoDB for the database. The environment setup emphasizes using environment variables for URLs and specific port configurations.
-
+The application features a React frontend, a FastAPI backend, and MongoDB. Environment variables are strictly used for URLs and ports.
 
 
-**Key Files and Changes:**
 
--   :
-    -   **Importance**: Main React application entry point, defines global layout and routing.
-    -   **Changes**: Initial setup included  and  route. Modified to include , , , and routes for  using . Extensive updates to handle hash-based navigation for in-page scrolling when returning to the homepage from service detail pages, and fixing duplicate  imports. Background colors were also updated to match design iterations.
-
--   :
-    -   **Importance**: Renders the site navigation, logo, and language switcher.
-    -   **Changes**: Updated to incorporate the new color scheme (yellow/slate) for branding. Modified to use  and  for smart navigation: on the homepage, it scrolls to sections; on service pages, it navigates to the homepage with a corresponding hash.
-
--   :
-    -   **Importance**: Displays the prominent hero section with a call to action.
-    -   **Changes**: Adjusted background image opacity (from 20% to 60%) for better visibility. Color scheme updated from dark zinc to amber/brown, then to yellow/slate to match the logo. Button styling and text colors were updated accordingly.
-
--   :
-    -   **Importance**: Contains company information, statistics, and a visual element.
-    -   **Changes**: The initial single image was replaced with the  component to showcase multiple images, drawing data from . Color scheme was updated as per design iterations.
-
--   :
-    -   **Importance**: Displays a list of services offered.
-    -   **Changes**: Initially, clicking a service opened a modal. This was changed to directly navigate to a  using React Router, with Zobraziť službu as the CTA text. Includes  for URL generation.
-
--   :
-    -   **Importance**: Showcases completed projects with filtering.
-    -   **Changes**: Modified to open a  component (containing ) when a portfolio item is clicked, instead of previous behavior. This provides a quick project preview.
-
--   :
-    -   **Importance**: Provides detailed information for each specific service.
-    -   **Changes**: Created to display service details based on the URL slug. Implemented:
-        -   Tiles background in the hero section.
-        -   Restructured Čo ponúkame (What we offer) and Proces realizácie (Process) sections to be vertically stacked with categories, icons, and box shadows.
-        -   Integration of  for Naše realizácie (Our Projects) section, displaying a single row of larger images.
-        -   Fixed Kontaktovať nás button to navigate to the contact section on the homepage.
-        -   Modified to use the  helper for consistent URL mapping.
-
--   :
-    -   **Importance**: New component for a responsive image carousel.
-    -   **Changes**: Created to handle a set of images, with auto-play, manual navigation, and pagination dots. Used in the  component.
-
--   :
-    -   **Importance**: Reusable overlay component for displaying content.
-    -   **Changes**: Created to wrap the  component when invoked by the  section.
-
--   :
-    -   **Importance**: Displays a gallery of projects filtered by service type within a modal.
-    -   **Changes**: Created to show filtered projects. Modified to be a single-row slider, integrated with  for full-screen image viewing when an image is clicked.
-
--   :
-    -   **Importance**: Specific slider component for the Naše realizácie section on service detail pages.
-    -   **Changes**: Created to display projects in a customizable grid (initially 2 rows, then 1 row with larger images), with slider navigation and pagination. Integrates with .
-
--   :
-    -   **Importance**: New component for full-screen image viewing.
-    -   **Changes**: Created to display a full-size image with navigation controls (arrows, keyboard support) and project details. Used by  and .
-
--   :
-    -   **Importance**: Stores all static content, images, and mock data for the frontend.
-    -   **Changes**: Populated with hero images, about section images, service details, portfolio projects, and translations. Continuously updated to add more project data and configure image arrays for sliders/galleries.
-
--   :
-    -   **Importance**: Custom hook for displaying toast notifications.
-    -   **Changes**: Created from the initial context as it was missing, fixing frontend compilation errors.
-
--   :
-    -   **Importance**: Collection of reusable UI components (e.g., Button, Input).
-    -   **Changes**: These files were initially missing and had to be recreated based on the provided initial context. Some were updated to remove  dependency and adopt the new color schemes.
-
--   :
-    -   **Importance**: Configures Tailwind CSS, including custom colors and theming.
-    -   **Changes**: Updated multiple times to define new color palettes (from  to /, then to /) to match design requirements and logo branding.
-
+- :
+    - **Importance**: Manages frontend dependencies.
+    - **Changes**:  and  were added for authentication and enhanced sliders.
+- :
+    - **Importance**: Initializes Firebase with project-specific API keys and configuration.
+    - **Changes**: New file created containing the user-provided Firebase configuration.
+- :
+    - **Importance**: Provides authentication state and functions (login, logout) to React components.
+    - **Changes**: New file created to wrap the application with Firebase authentication context.
+- :
+    - **Importance**: Ensures that certain routes (like ) are only accessible to authenticated users.
+    - **Changes**: New component created.
+- :
+    - **Importance**: Handles user login for admin access.
+    - **Changes**: New component created for email/password Firebase authentication.
+- :
+    - **Importance**: The protected admin area where content management (initially photo upload/gallery) would reside.
+    - **Changes**: New component created, intended to house photo management.
+-  & :
+    - **Importance**: Intended for uploading and managing images respectively.
+    - **Changes**: New components created, initially designed for Firebase Storage, then planned for local FTP, but functionality was skipped. Currently, they are placeholders with no active image upload/management logic.
+- :
+    - **Importance**: Main application entry, defines routes and global providers.
+    - **Changes**: Updated to include , and new routes for  and  (wrapped with ).
+- :
+    - **Importance**: Was intended for dynamically loading images from the public folder based on category.
+    - **Changes**: Created to handle folder-based image loading, but later deleted during the rollback.
+- :
+    - **Importance**: Stores all static content, images, and mock data for the frontend.
+    - **Changes**: Was temporarily bypassed for image loading, but later restored as the primary source for portfolio items and their image data.
+- , , , :
+    - **Importance**: These components display portfolio items and service-related galleries.
+    - **Changes**: Were initially modified to use dynamic folder-based image loading, but later reverted to use the original  data from  and their predefined image URLs, based on explicit user feedback.
 </code_architecture>
 
 <pending_tasks>
-- Proceed with backend development to make the contact form and other features fully functional with database integration. This was offered by the AI engineer multiple times but not explicitly requested by the user to proceed.
+- Backend development to make the contact form and other features fully functional with database integration.
+- Implementing the dashboard functionality for adding/removing photos, currently skipped.
 </pending_tasks>
 
 <current_work>
-The immediate previous work involved significant refinements to the website's user experience and visual design.
-Specifically, for the service detail pages (e.g., ):
-1.  **Čo ponúkame (What we offer) section layout**: This section was restructured into two distinct categories: DIZAJN A KVALITA (Design and Quality) and MONTÁŽ A SERVIS (Assembly and Service). The features were distributed under these categories, with the first three tiles under DIZAJN A KVALITA and the remaining two under MONTÁŽ A SERVIS. Each tile now features a matching icon and a box shadow with a yellow glow on hover (), enhancing visual appeal and interaction.
-2.  **User Experience Flow Redirection**:
-    *   **Naše služby (Our Services) section on the homepage**: Clicking on a service card (e.g., Vstavane skrine) no longer opens a modal window. Instead, it now directly navigates the user to the dedicated service detail page (). The call-to-action text on these cards was updated to Zobraziť službu (Show Service).
-    *   **Naše realizácie (Our Projects) section on the homepage**: Clicking on a portfolio item in this section now opens a modal gallery with related projects, providing a quick preview without leaving the homepage. A camera icon (📸) indicates this functionality.
+The immediate previous work involved a significant rollback of the image management system. After initially implementing a folder-based dynamic image loading system and creating placeholder images within  for categories like , , etc., the user explicitly requested to revert the Naše realizácie section. The user wanted the original portfolio categories and items, not the dynamically generated ones.
 
-These changes were thoroughly implemented and tested, with screenshots confirming the successful restructuring of the Čo ponúkame section, the direct navigation from service cards, and the modal gallery functionality for portfolio items. The website's navigation and interactive elements are fully functional, providing a more intuitive and professional user journey.
+Consequently, the AI engineer restored , , , and  to their state before the dynamic image loading implementation. This means these components now source their portfolio data and image URLs directly from the  file, as they did originally. The  utility and  (a temporary static data file) were deleted. The Firebase Authentication system, including the  route and the protected , remains functional. The  folder structure with placeholder images still exists but is not actively used by the main portfolio/gallery components. The website is currently displaying images based on the original mock data.
 </current_work>
 
 <optional_next_step>
-Ask the user if they wish to proceed with the backend development to make the contact form and other features fully functional with database integration.
+Await user feedback on the restored Naše realizácie section and Firebase authentication.
 </optional_next_step>
