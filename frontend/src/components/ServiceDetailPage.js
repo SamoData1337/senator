@@ -6,19 +6,19 @@ import Header from './Header';
 import Footer from './Footer';
 import GallerySlider from './GallerySlider';
 import { 
-  Palette, 
-  Ruler, 
-  Sparkles, 
-  Wrench, 
-  Settings, 
-  Clipboard, 
-  Target, 
-  BrickWall,
-  RulerDimensionLine,
-  Calculator,
-  Factory,
-  Drill 
-} from 'lucide-react';
+  FaPalette as Palette, 
+  FaRuler as Ruler, 
+  FaStar as Sparkles, 
+  FaWrench as Wrench, 
+  FaCog as Settings, 
+  FaClipboard as Clipboard, 
+  FaBullseye as Target, 
+  FaBuilding as BrickWall,
+  FaRuler as RulerDimensionLine,
+  FaCalculator as Calculator,
+  FaIndustry as Factory,
+  FaDrill as Drill 
+} from 'react-icons/fa';
 
 const ServiceDetailPage = () => {
   const { serviceSlug } = useParams();
