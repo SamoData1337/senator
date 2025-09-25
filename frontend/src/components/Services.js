@@ -74,7 +74,14 @@ const Services = () => {
             >
               {/* Icon */}
               <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center mb-6 group-hover:from-yellow-500 group-hover:to-yellow-600 transition-all duration-300 shadow-lg">
-                <span className="text-2xl">{service.icon}</span>
+                {(() => {
+                  const IconComponent = serviceIcons[service.title];
+                  return IconComponent ? (
+                    <IconComponent className="text-2xl text-black" />
+                  ) : (
+                    <span className="text-2xl">{service.icon}</span>
+                  );
+                })()}
               </div>
 
               {/* Content */}
