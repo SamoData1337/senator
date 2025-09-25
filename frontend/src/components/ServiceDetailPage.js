@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { portfolioItems } from '../data/mock';
+import { loadCategoryImages } from '../utils/imageLoader';
 import Header from './Header';
 import Footer from './Footer';
 import GallerySlider from './GallerySlider';
