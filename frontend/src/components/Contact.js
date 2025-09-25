@@ -97,8 +97,8 @@ const Contact = () => {
                 const IconComponent = info.icon;
                 return (
                   <div key={index} className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <IconComponent className="text-xl text-black" />
+                    <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                      <IconComponent className="text-2xl text-yellow-400" />
                     </div>
                     <div>
                       <div className="text-white font-medium mb-1">{info.label}</div>
