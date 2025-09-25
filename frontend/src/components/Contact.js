@@ -93,17 +93,20 @@ const Contact = () => {
             </h3>
             
             <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <span className="text-xl">{info.icon}</span>
+              {contactInfo.map((info, index) => {
+                const IconComponent = info.icon;
+                return (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <IconComponent className="text-xl text-black" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium mb-1">{info.label}</div>
+                      <div className="text-slate-300">{info.value}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-white font-medium mb-1">{info.label}</div>
-                    <div className="text-slate-300">{info.value}</div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Map Placeholder */}
