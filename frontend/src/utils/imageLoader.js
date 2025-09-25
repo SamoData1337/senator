@@ -10,54 +10,70 @@ export const loadCategoryImages = async (category, maxImages = 15) => {
   const images = [];
   const basePath = `/images/portfolio/${category}`;
   
-  // Create array of potential image paths
-  const imagePaths = [];
-  for (let i = 1; i <= maxImages; i++) {
-    imagePaths.push(`${basePath}/image-${i}.jpg`);
-  }
+  // Known image counts for each category (based on actual folder contents)
+  const categoryImageCounts = {
+    'vstavane-skrine': 5,
+    'satniky': 4,
+    'komody-a-nabytok': 4,
+    'deliace-priecky': 3,
+    'prechodove-dvere': 3,
+    'postele': 3
+  };
   
-  // Check all images in parallel for better performance
-  const imageChecks = imagePaths.map(async (imagePath, index) => {
-    return new Promise((resolve) => {
-      const img = new Image();
-      const timeoutId = setTimeout(() => {
-        resolve(null); // Timeout after 2 seconds
-      }, 2000);
-      
-      img.onload = () => {
-        clearTimeout(timeoutId);
-        resolve({
-          index: index + 1,
-          path: imagePath,
-          exists: true
-        });
-      };
-      
-      img.onerror = () => {
-        clearTimeout(timeoutId);
-        resolve(null);
-      };
-      
-      img.src = imagePath;
-    });
-  });
+  // Get the known image count for this category, or fallback to checking
+  const knownCount = categoryImageCounts[category];
   
-  // Wait for all checks to complete
-  const results = await Promise.all(imageChecks);
-  
-  // Filter out null results and create image objects
-  results
-    .filter(result => result !== null)
-    .forEach(result => {
+  if (knownCount) {
+    // Use known count to generate images directly
+    for (let i = 1; i <= knownCount; i++) {
+      const imagePath = `${basePath}/image-${i}.jpg`;
       images.push({
-        id: `${category}-${result.index}`,
-        url: result.path,
+        id: `${category}-${i}`,
+        url: imagePath,
         category: category,
-        filename: `image-${result.index}.jpg`,
-        title: `${getCategoryDisplayName(category)} - Foto ${result.index}`,
+        filename: `image-${i}.jpg`,
+        title: `${getCategoryDisplayName(category)} - Foto ${i}`,
         description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
       });
-    });
+    }
+  } else {
+    // Fallback to dynamic checking for unknown categories
+    for (let i = 1; i <= maxImages; i++) {
+      const imagePath = `${basePath}/image-${i}.jpg`;
+      
+      // Quick image existence check
+      try {
+        const img = new Image();
+        const exists = await new Promise((resolve) => {
+          const timeout = setTimeout(() => resolve(false), 1000);
+          img.onload = () => {
+            clearTimeout(timeout);
+            resolve(true);
+          };
+          img.onerror = () => {
+            clearTimeout(timeout);
+            resolve(false);
+          };
+          img.src = imagePath;
+        });
+        
+        if (exists) {
+          images.push({
+            id: `${category}-${i}`,
+            url: imagePath,
+            category: category,
+            filename: `image-${i}.jpg`,
+            title: `${getCategoryDisplayName(category)} - Foto ${i}`,
+            description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
+          });
+        } else {
+          break; // Stop at first missing image
+        }
+      } catch (error) {
+        break; // Stop on error
+      }
+    }
+  }
   
   return images;
 };
