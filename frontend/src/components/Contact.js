@@ -112,7 +112,7 @@ const Contact = () => {
             {/* Map Placeholder */}
             <div className="mt-8 h-64 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 flex items-center justify-center">
               <div className="text-center">
-                <span className="text-6xl text-yellow-400 mb-2 block">🗺️</span>
+                <FaMap className="text-6xl text-yellow-400 mb-2 mx-auto" />
                 <div className="text-slate-300">Interaktívna mapa</div>
               </div>
             </div>
