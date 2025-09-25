@@ -1,5 +1,13 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { 
+  FaHome,
+  FaTshirt, 
+  FaRuler,
+  FaDoorOpen,
+  FaCouch,
+  FaBed
+} from 'react-icons/fa';
 
 const Services = () => {
   const { t } = useLanguage();
