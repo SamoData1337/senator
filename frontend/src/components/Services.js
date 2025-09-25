@@ -73,13 +73,13 @@ const Services = () => {
               className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:bg-slate-800/70 cursor-pointer"
             >
               {/* Icon */}
-              <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center mb-6 group-hover:from-yellow-500 group-hover:to-yellow-600 transition-all duration-300 shadow-lg">
+              <div className="w-16 h-16 flex items-center justify-center mb-6">
                 {(() => {
                   const IconComponent = serviceIcons[service.title];
                   return IconComponent ? (
-                    <IconComponent className="text-2xl text-black" />
+                    <IconComponent className="text-4xl text-yellow-400" />
                   ) : (
-                    <span className="text-2xl">{service.icon}</span>
+                    <span className="text-4xl text-yellow-400">{service.icon}</span>
                   );
                 })()}
               </div>
