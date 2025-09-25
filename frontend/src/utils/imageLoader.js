@@ -10,68 +10,45 @@ export const loadCategoryImages = async (category, maxImages = 15) => {
   const images = [];
   const basePath = `/images/portfolio/${category}`;
   
-  // Known image counts for each category (based on actual folder contents)
-  const categoryImageCounts = {
-    'vstavane-skrine': 5,
-    'satniky': 4,
-    'komody-a-nabytok': 4,
-    'deliace-priecky': 3,
-    'prechodove-dvere': 3,
-    'postele': 3
-  };
-  
-  // Get the known image count for this category, or fallback to checking
-  const knownCount = categoryImageCounts[category];
-  
-  if (knownCount) {
-    // Use known count to generate images directly
-    for (let i = 1; i <= knownCount; i++) {
-      const imagePath = `${basePath}/image-${i}.jpg`;
-      images.push({
-        id: `${category}-${i}`,
-        url: imagePath,
-        category: category,
-        filename: `image-${i}.jpg`,
-        title: `${getCategoryDisplayName(category)} - Foto ${i}`,
-        description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
-      });
-    }
-  } else {
-    // Fallback to dynamic checking for unknown categories
-    for (let i = 1; i <= maxImages; i++) {
-      const imagePath = `${basePath}/image-${i}.jpg`;
-      
-      // Quick image existence check
-      try {
+  // Use dynamic detection instead of hardcoded counts
+  for (let i = 1; i <= maxImages; i++) {
+    const imagePath = `${basePath}/image-${i}.jpg`;
+    
+    // Check if image exists by trying to load it
+    try {
+      const exists = await new Promise((resolve) => {
         const img = new Image();
-        const exists = await new Promise((resolve) => {
-          const timeout = setTimeout(() => resolve(false), 1000);
-          img.onload = () => {
-            clearTimeout(timeout);
-            resolve(true);
-          };
-          img.onerror = () => {
-            clearTimeout(timeout);
-            resolve(false);
-          };
-          img.src = imagePath;
-        });
+        const timeout = setTimeout(() => resolve(false), 500); // Shorter timeout
         
-        if (exists) {
-          images.push({
-            id: `${category}-${i}`,
-            url: imagePath,
-            category: category,
-            filename: `image-${i}.jpg`,
-            title: `${getCategoryDisplayName(category)} - Foto ${i}`,
-            description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
-          });
-        } else {
-          break; // Stop at first missing image
-        }
-      } catch (error) {
-        break; // Stop on error
+        img.onload = () => {
+          clearTimeout(timeout);
+          resolve(true);
+        };
+        
+        img.onerror = () => {
+          clearTimeout(timeout);
+          resolve(false);
+        };
+        
+        img.src = imagePath;
+      });
+      
+      if (exists) {
+        images.push({
+          id: `${category}-${i}`,
+          url: imagePath,
+          category: category,
+          filename: `image-${i}.jpg`,
+          title: `${getCategoryDisplayName(category)} - Foto ${i}`,
+          description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
+        });
+      } else {
+        // Stop at first missing image (assumes sequential numbering)
+        break;
       }
+    } catch (error) {
+      // Stop on error
+      break;
     }
   }
   
