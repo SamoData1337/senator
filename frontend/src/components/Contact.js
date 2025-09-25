@@ -110,7 +110,7 @@ const Contact = () => {
             </div>
 
             {/* Google Map */}
-            <div className="mt-8 h-64 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden relative group">
+            <div className="mt-8 h-64 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d18.1138289!3d48.3156538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476b3ec733261889%3A0xafb847fc720cc503!2sSENATOR!5e0!3m2!1ssk!2ssk!4v1635789012345!5m2!1ssk!2ssk"
                 width="100%"
@@ -121,17 +121,6 @@ const Contact = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="SENATOR - Levická 252/5, Chrenová, 949 01 Nitra"
               />
-              {/* Clickable overlay to open full Google Maps */}
-              <a
-                href="https://www.google.sk/maps/place/SENATOR/@48.3159197,18.1149766,252m/data=!3m1!1e3!4m6!3m5!1s0x476b3ec733261889:0xafb847fc720cc503!8m2!3d48.3156538!4d18.1138289!16s%2Fg%2F11bzx1hs87?entry=ttu&g_ep=EgoyMDI1MDkyMi4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 bg-transparent hover:bg-yellow-400/10 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100"
-              >
-                <div className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-bold shadow-lg">
-                  Otvoriť v Google Maps
-                </div>
-              </a>
             </div>
           </div>
 
