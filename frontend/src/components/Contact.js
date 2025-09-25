@@ -112,14 +112,14 @@ const Contact = () => {
             {/* Google Map */}
             <div className="mt-8 h-64 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.123!2d18.089!3d48.315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDE4JzU0LjAiTiAxOMKwMDUnMjAuNCJF!5e0!3m2!1sen!2ssk!4v1635789012345!5m2!1sen!2ssk&q=Levická+252,+Chrenová,+949+01+Nitra,+Slovakia"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.123!2d18.089!3d48.315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDE4JzU0LjAiTiAxOMKwMDUnMjAuNCJF!5e0!3m2!1ssk!2ssk!4v1635789012345!5m2!1ssk!2ssk&q=Levická+252%2F5%2C+Chrenová%2C+949+01+Nitra%2C+Slovakia"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Senator Slovakia Location"
+                title="Senator Slovakia - Levická 252/5, Chrenová, Nitra"
               />
             </div>
           </div>
