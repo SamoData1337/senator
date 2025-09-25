@@ -140,6 +140,25 @@ const ServiceDetailPage = () => {
         'Výroba a príprava komponentov',
         'Montáž a testovanie funkcionalít'
       ]
+    },
+    'Komody a nábytok': {
+      title: 'Komody a zákazkový nábytok',
+      description: 'Navrhujeme a vyrábame zákazkový nábytok presne podľa vašich predstáv. Od praktických komód až po komplexné obývacie steny - každý kus je jedinečný.',
+      features: [
+        'Návrh podľa individuálnych potrieb',
+        'Široký výber materiálov a povrchov',
+        'Moderný aj klasický dizajn',
+        'Funkčné úložné riešenia',
+        'Precízna výroba a montáž'
+      ],
+      process: [
+        'Diskusia o požiadavkách a možnostiach',
+        'Návrh a 3D vizualizácia',
+        'Výber materiálov a hardvéru',
+        'Výroba v našej stolárskej dielni',
+        'Doprava a profesionálna montáž',
+        'Finálne úpravy a kontrola kvality'
+      ]
     }
     // Add more service details as needed
   };
