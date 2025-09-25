@@ -112,7 +112,7 @@ const Contact = () => {
             {/* Google Map */}
             <div className="mt-8 h-64 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d18.1138289!3d48.3156538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476b3ec733261889%3A0xafb847fc720cc503!2sSENATOR!5e0!3m2!1ssk!2ssk!4v1635789012345!5m2!1ssk!2ssk"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOMD0C6UYnN0Tk&q=SENATOR,Levická+252/5,Chrenová,949+01+Nitra,Slovakia&zoom=16"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
