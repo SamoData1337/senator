@@ -49,22 +49,22 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: '📍',
+      icon: FaMapMarkerAlt,
       label: t('contact.info.address'),
       value: t('contact.info.address')
     },
     {
-      icon: '📞',
+      icon: FaPhone,
       label: t('contact.info.phone'),
       value: t('contact.info.phone')
     },
     {
-      icon: '✉️',
+      icon: FaEnvelope,
       label: t('contact.info.email'),
       value: t('contact.info.email')
     },
     {
-      icon: '🕒',
+      icon: FaClock,
       label: t('contact.info.hours'),
       value: t('contact.info.hours')
     }
