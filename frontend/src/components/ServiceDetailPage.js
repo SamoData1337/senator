@@ -36,7 +36,7 @@ const ServiceDetailPage = () => {
     'satniky': 'Šatníky',
     'deliace-priecky': 'Deliace priečky',
     'prechodove-dvere': 'Prechodové dvere',
-    'komody-nabytok-a-ine': 'Komody, nábytok a iné',
+    'komody-a-nabytok': 'Komody a nábytok',
     'postele': 'Postele'
   };
 
@@ -46,7 +46,7 @@ const ServiceDetailPage = () => {
     'satniky': 'satniky',
     'deliace-priecky': 'deliace-priecky',
     'prechodove-dvere': 'prechodove-dvere',
-    'komody-nabytok-a-ine': 'komody-a-nabytok',
+    'komody-a-nabytok': 'komody-a-nabytok',
     'postele': 'postele'
   };
 
