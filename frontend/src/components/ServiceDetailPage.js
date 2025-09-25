@@ -17,7 +17,7 @@ import {
   FaRuler as RulerDimensionLine,
   FaCalculator as Calculator,
   FaIndustry as Factory,
-  FaDrill as Drill 
+  FaHammer as Drill 
 } from 'react-icons/fa';
 
 const ServiceDetailPage = () => {
