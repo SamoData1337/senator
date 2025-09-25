@@ -12,6 +12,16 @@ import {
 const Services = () => {
   const { t } = useLanguage();
 
+  // Map service titles to react-icons
+  const serviceIcons = {
+    'Vstavané skrine': FaHome,
+    'Šatníky': FaTshirt,
+    'Deliace priečky': FaRuler,
+    'Prechodové dvere': FaDoorOpen,
+    'Komody a nábytok': FaCouch,
+    'Postele': FaBed
+  };
+
   // Function to convert Slovak text to URL-friendly slug
   const createSlug = (text) => {
     const accents = {
