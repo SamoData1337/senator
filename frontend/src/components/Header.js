@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from './ui/button';
+import { FaFacebook } from 'react-icons/fa';
 
 const Header = () => {
   const { language, t, switchLanguage } = useLanguage();
