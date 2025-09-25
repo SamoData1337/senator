@@ -2,6 +2,12 @@ import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { aboutImages } from '../data/mock';
 import ImageSlider from './ImageSlider';
+import { 
+  FaTrophy,
+  FaUsers,
+  FaWrench,
+  FaCheck
+} from 'react-icons/fa';
 
 const About = () => {
   const { t } = useLanguage();
