@@ -6,26 +6,38 @@
  * @param {number} maxImages - Maximum number of images to check (default: 10)
  * @returns {Promise<Array>} - Array of image objects with url and metadata
  */
-export const loadCategoryImages = async (category, maxImages = 10) => {
+export const loadCategoryImages = async (category, maxImages = 15) => {
   const images = [];
   const basePath = `/images/portfolio/${category}`;
   
-  // For now, assume images follow the pattern image-1.jpg, image-2.jpg, etc.
-  // We'll check for common extensions but not test if they exist to avoid performance issues
-  const extensions = ['jpg', 'jpeg', 'png', 'webp'];
-  
-  for (let i = 1; i <= maxImages; i++) {
-    // Try jpg first as it's most common
-    const imagePath = `${basePath}/image-${i}.jpg`;
-    
-    images.push({
-      id: `${category}-${i}`,
-      url: imagePath,
-      category: category,
-      filename: `image-${i}.jpg`,
-      title: `${getCategoryDisplayName(category)} - Foto ${i}`,
-      description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
+  // Check for actual existing images by trying to load them
+  const checkImageExists = (imagePath) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = imagePath;
     });
+  };
+  
+  // Check images sequentially to maintain order
+  for (let i = 1; i <= maxImages; i++) {
+    const imagePath = `${basePath}/image-${i}.jpg`;
+    const exists = await checkImageExists(imagePath);
+    
+    if (exists) {
+      images.push({
+        id: `${category}-${i}`,
+        url: imagePath,
+        category: category,
+        filename: `image-${i}.jpg`,
+        title: `${getCategoryDisplayName(category)} - Foto ${i}`,
+        description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
+      });
+    } else {
+      // If image doesn't exist, stop checking (assumes images are numbered sequentially)
+      break;
+    }
   }
   
   return images;
