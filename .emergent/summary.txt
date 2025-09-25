@@ -1,0 +1,88 @@
+<analysis>
+The AI engineer's work began by transforming the  website into a modern, industrial-themed, bilingual React frontend. Initial iterations focused on design, colors, and fixing critical frontend issues. Later, complex UI features like image sliders and dual-experience service sections were implemented. The most recent significant work involved integrating Firebase Authentication for an admin dashboard, initially with Firebase Storage in mind for photo management. However, the user then requested a shift to a folder-based image loading system using the  directory, skipping backend integration for now. This led to the creation of dynamic image loading utilities and component updates. A crucial pivot occurred when the user explicitly rejected the new portfolio categories introduced by the AI during dynamic image implementation, prompting a full rollback to the original  data structure for the Naše realizácie section, while keeping Firebase authentication. The AI is now awaiting user verification of the restored state.
+</analysis>
+
+<product_requirements>
+The goal was to rebuild  into a modern, industrial, bilingual (Slovak/English) React application for Senator hardware and custom furniture. Initially, core requirements included:
+- Enhanced visibility for the hero background image.
+- A color scheme matching the Senator logo (yellow/golden, black text, metallic silver/gray).
+- An image slider for the About section.
+- A dual experience for Naše služby (Our Services): modal galleries for quick views and dedicated service pages () for details, fixing slug generation for Slovak characters.
+- Dedicated service pages required a tiled background, vertically stacked Proces and Čo ponúkame sections, and a slider gallery for Naše realizácie (initially 2 rows, then 1 row, then dynamic folder-based).
+- Header menu links and Kontaktovať nás button needed consistent navigation.
+- Lightbox functionality for modal images.
+- Čo ponúkame restructured with categories, icons, and box shadows.
+- UX for Naše služby changed to directly navigate to detail pages, while Naše realizácie opened a modal gallery.
+- Later, an admin dashboard with email/password Firebase authentication ( leading to ) was requested for uploading product photos.
+- The photo storage strategy shifted from Firebase Storage to local FTP (public folder) for dynamic loading.
+- Finally, the user explicitly requested reverting the Naše realizácie section to its *original* categories and data, discarding the newly introduced dynamic categories, while keeping Firebase authentication.
+</product_requirements>
+
+<key_technical_concepts>
+- **React Frontend**: Primary UI framework.
+- **FastAPI Backend**: Python API (initially placeholder, later considered for file upload).
+- **MongoDB**: Database (placeholder).
+- **Tailwind CSS**: Styling.
+- **React Router**: Client-side routing.
+- **Firebase Authentication**: Email/password admin login.
+- **Component-based Architecture**: Modular development.
+- **Environment Variables**: Configuration.
+- **Slug Generation**: SEO-friendly URLs.
+- **Image Sliders/Lightbox**: Custom components for galleries.
+- **Folder-based Image Loading**: Dynamic image display from public directories.
+</key_technical_concepts>
+
+<code_architecture>
+The application features a React frontend, a FastAPI backend, and MongoDB. Environment variables are strictly used for URLs and ports.
+
+
+
+- :
+    - **Importance**: Manages frontend dependencies.
+    - **Changes**:  and  were added for authentication and enhanced sliders.
+- :
+    - **Importance**: Initializes Firebase with project-specific API keys and configuration.
+    - **Changes**: New file created containing the user-provided Firebase configuration.
+- :
+    - **Importance**: Provides authentication state and functions (login, logout) to React components.
+    - **Changes**: New file created to wrap the application with Firebase authentication context.
+- :
+    - **Importance**: Ensures that certain routes (like ) are only accessible to authenticated users.
+    - **Changes**: New component created.
+- :
+    - **Importance**: Handles user login for admin access.
+    - **Changes**: New component created for email/password Firebase authentication.
+- :
+    - **Importance**: The protected admin area where content management (initially photo upload/gallery) would reside.
+    - **Changes**: New component created, intended to house photo management.
+-  & :
+    - **Importance**: Intended for uploading and managing images respectively.
+    - **Changes**: New components created, initially designed for Firebase Storage, then planned for local FTP, but functionality was skipped. Currently, they are placeholders with no active image upload/management logic.
+- :
+    - **Importance**: Main application entry, defines routes and global providers.
+    - **Changes**: Updated to include , and new routes for  and  (wrapped with ).
+- :
+    - **Importance**: Was intended for dynamically loading images from the public folder based on category.
+    - **Changes**: Created to handle folder-based image loading, but later deleted during the rollback.
+- :
+    - **Importance**: Stores all static content, images, and mock data for the frontend.
+    - **Changes**: Was temporarily bypassed for image loading, but later restored as the primary source for portfolio items and their image data.
+- , , , :
+    - **Importance**: These components display portfolio items and service-related galleries.
+    - **Changes**: Were initially modified to use dynamic folder-based image loading, but later reverted to use the original  data from  and their predefined image URLs, based on explicit user feedback.
+</code_architecture>
+
+<pending_tasks>
+- Backend development to make the contact form and other features fully functional with database integration.
+- Implementing the dashboard functionality for adding/removing photos, currently skipped.
+</pending_tasks>
+
+<current_work>
+The immediate previous work involved a significant rollback of the image management system. After initially implementing a folder-based dynamic image loading system and creating placeholder images within  for categories like , , etc., the user explicitly requested to revert the Naše realizácie section. The user wanted the original portfolio categories and items, not the dynamically generated ones.
+
+Consequently, the AI engineer restored , , , and  to their state before the dynamic image loading implementation. This means these components now source their portfolio data and image URLs directly from the  file, as they did originally. The  utility and  (a temporary static data file) were deleted. The Firebase Authentication system, including the  route and the protected , remains functional. The  folder structure with placeholder images still exists but is not actively used by the main portfolio/gallery components. The website is currently displaying images based on the original mock data.
+</current_work>
+
+<optional_next_step>
+Await user feedback on the restored Naše realizácie section and Firebase authentication.
+</optional_next_step>

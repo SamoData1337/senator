@@ -1,29 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { portfolioItems } from '../data/mock';
+import { loadCategoryImages } from '../utils/imageLoader';
 import Header from './Header';
 import Footer from './Footer';
 import GallerySlider from './GallerySlider';
 import { 
-  Palette, 
-  Ruler, 
-  Sparkles, 
-  Wrench, 
-  Settings, 
-  Clipboard, 
-  Target, 
-  BrickWall,
-  RulerDimensionLine,
-  Calculator,
-  Factory,
-  Drill 
-} from 'lucide-react';
+  FaPalette as Palette, 
+  FaRuler as Ruler, 
+  FaStar as Sparkles, 
+  FaWrench as Wrench, 
+  FaCog as Settings, 
+  FaClipboard as Clipboard, 
+  FaBullseye as Target, 
+  FaBuilding as BrickWall,
+  FaRuler as RulerDimensionLine,
+  FaCalculator as Calculator,
+  FaIndustry as Factory,
+  FaHammer as Drill 
+} from 'react-icons/fa';
 
 const ServiceDetailPage = () => {
   const { serviceSlug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useLanguage();
+  
+  // State for dynamic images
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Map slugs back to service names
   const slugToService = {
@@ -35,18 +40,52 @@ const ServiceDetailPage = () => {
     'postele': 'Postele'
   };
 
-  const serviceToCategory = {
-    'Vstavané skrine': 'Vstavané skrine',
-    'Šatníky': 'Šatníky',
-    'Deliace priečky': 'Deliace priečky', 
-    'Prechodové dvere': 'Prechodové dvere',
-    'Komody, nábytok a iné': 'Nábytok',
-    'Postele': 'Postele'
+  // Map slugs to folder names (for public folder structure)
+  const slugToFolderMap = {
+    'vstavane-skrine': 'vstavane-skrine',
+    'satniky': 'satniky',
+    'deliace-priecky': 'deliace-priecky',
+    'prechodove-dvere': 'prechodove-dvere',
+    'komody-nabytok-a-ine': 'komody-a-nabytok',
+    'postele': 'postele'
   };
 
   const serviceName = slugToService[serviceSlug];
-  const category = serviceToCategory[serviceName];
-  const projects = portfolioItems.filter(item => item.category === category);
+  const folderName = slugToFolderMap[serviceSlug];
+
+  // Load images dynamically when component mounts or serviceSlug changes
+  useEffect(() => {
+    const loadImages = async () => {
+      if (!folderName) {
+        setProjects([]);
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+        const images = await loadCategoryImages(folderName, 20); // Load up to 20 images
+        
+        // Convert to project format for GallerySlider
+        const projectsData = images.map((img, index) => ({
+          id: img.id,
+          title: img.title,
+          category: serviceName,
+          image: img.url,
+          description: img.description
+        }));
+
+        setProjects(projectsData);
+      } catch (error) {
+        console.error('Error loading images:', error);
+        setProjects([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadImages();
+  }, [serviceSlug, folderName, serviceName]);
 
   if (!serviceName) {
     return (
@@ -244,7 +283,19 @@ const ServiceDetailPage = () => {
       {/* Gallery */}
       <section className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
-          <GallerySlider projects={projects} />
+          {isLoading ? (
+            <div className="text-center">
+              <div className="text-white text-xl mb-4">Načítavam galériu...</div>
+              <div className="w-8 h-8 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto"></div>
+            </div>
+          ) : projects.length > 0 ? (
+            <GallerySlider projects={projects} />
+          ) : (
+            <div className="text-center text-slate-400">
+              <div className="text-xl mb-4">Momentálne nie sú k dispozícii žiadne fotografie</div>
+              <div className="text-sm">Pridáme ich čoskoro</div>
+            </div>
+          )}
         </div>
       </section>
 

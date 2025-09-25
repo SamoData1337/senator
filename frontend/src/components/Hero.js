@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from './ui/button';
+import { FaPhone } from 'react-icons/fa';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -65,7 +66,7 @@ const Hero = () => {
               onClick={() => scrollToSection('#contact')}
               className="border-slate-400 text-slate-200 hover:bg-slate-700/50 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 backdrop-blur-sm"
             >
-              <span>📞</span>
+              <FaPhone className="text-sm" />
               {t('hero.ctaSecondary')}
             </Button>
           </div>

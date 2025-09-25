@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import { Toaster } from "./components/ui/toaster";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -11,6 +12,9 @@ import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ServiceDetailPage from "./components/ServiceDetailPage";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const Home = () => {
   const location = useLocation();
@@ -43,15 +47,23 @@ const Home = () => {
 function App() {
   return (
     <LanguageProvider>
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services/:serviceSlug" element={<ServiceDetailPage />} />
-          </Routes>
-        </BrowserRouter>
-        <Toaster />
-      </div>
+      <AuthProvider>
+        <div className="App">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services/:serviceSlug" element={<ServiceDetailPage />} />
+              <Route path="/admin/login" element={<Login />} />
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </BrowserRouter>
+          <Toaster />
+        </div>
+      </AuthProvider>
     </LanguageProvider>
   );
 }

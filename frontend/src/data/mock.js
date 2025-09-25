@@ -81,7 +81,7 @@ export const translations = {
       subtitle: 'Spojte sa s nami',
       info: {
         company: 'Senator Slovakia s.r.o.',
-        address: 'Bratislava, Slovensko',
+        address: 'Levická 252/5, Chrenová, 949 01 Nitra',
         phone: '+421 xxx xxx xxx',
         email: 'info@senator-sk.sk',
         hours: 'Po - Pia: 8:00 - 17:00'

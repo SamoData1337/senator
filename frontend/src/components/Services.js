@@ -1,8 +1,26 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { 
+  FaHome,
+  FaTshirt, 
+  FaRuler,
+  FaDoorOpen,
+  FaCouch,
+  FaBed
+} from 'react-icons/fa';
 
 const Services = () => {
   const { t } = useLanguage();
+
+  // Map service titles to react-icons
+  const serviceIcons = {
+    'Vstavané skrine': FaHome,
+    'Šatníky': FaTshirt,
+    'Deliace priečky': FaRuler,
+    'Prechodové dvere': FaDoorOpen,
+    'Komody a nábytok': FaCouch,
+    'Postele': FaBed
+  };
 
   // Function to convert Slovak text to URL-friendly slug
   const createSlug = (text) => {
@@ -56,7 +74,14 @@ const Services = () => {
             >
               {/* Icon */}
               <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center mb-6 group-hover:from-yellow-500 group-hover:to-yellow-600 transition-all duration-300 shadow-lg">
-                <span className="text-2xl">{service.icon}</span>
+                {(() => {
+                  const IconComponent = serviceIcons[service.title];
+                  return IconComponent ? (
+                    <IconComponent className="text-2xl text-black" />
+                  ) : (
+                    <span className="text-2xl">{service.icon}</span>
+                  );
+                })()}
               </div>
 
               {/* Content */}

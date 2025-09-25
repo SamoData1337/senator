@@ -2,14 +2,20 @@ import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { aboutImages } from '../data/mock';
 import ImageSlider from './ImageSlider';
+import { 
+  FaTrophy,
+  FaUsers,
+  FaWrench,
+  FaCheck
+} from 'react-icons/fa';
 
 const About = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { icon: '🏆', value: '20+', label: 'Rokov skúseností' },
-    { icon: '👥', value: '500+', label: 'Spokojných zákazníkov' },
-    { icon: '🔧', value: '1000+', label: 'Realizovaných projektov' }
+    { icon: FaTrophy, value: '20+', label: 'Rokov skúseností' },
+    { icon: FaUsers, value: '500+', label: 'Spokojných zákazníkov' },
+    { icon: FaWrench, value: '1000+', label: 'Realizovaných projektov' }
   ];
 
   return (
@@ -37,7 +43,7 @@ const About = () => {
               {t('about.features').map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className="w-6 h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-black text-sm font-bold">✓</span>
+                    <FaCheck className="text-black text-sm" />
                   </div>
                   <span className="text-slate-300 font-medium">{feature}</span>
                 </div>
@@ -46,15 +52,18 @@ const About = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mx-auto mb-2 shadow-lg">
-                    <span className="text-2xl">{stat.icon}</span>
+              {stats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <div key={index} className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mx-auto mb-2 shadow-lg">
+                      <IconComponent className="text-2xl text-black" />
+                    </div>
+                    <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-sm text-slate-400">{stat.label}</div>
                   </div>
-                  <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-sm text-slate-400">{stat.label}</div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

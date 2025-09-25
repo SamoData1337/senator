@@ -4,6 +4,13 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { useToast } from '../hooks/use-toast';
+import { 
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaClock,
+  FaMap
+} from 'react-icons/fa';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -42,22 +49,22 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: '📍',
+      icon: FaMapMarkerAlt,
       label: t('contact.info.address'),
       value: t('contact.info.address')
     },
     {
-      icon: '📞',
+      icon: FaPhone,
       label: t('contact.info.phone'),
       value: t('contact.info.phone')
     },
     {
-      icon: '✉️',
+      icon: FaEnvelope,
       label: t('contact.info.email'),
       value: t('contact.info.email')
     },
     {
-      icon: '🕒',
+      icon: FaClock,
       label: t('contact.info.hours'),
       value: t('contact.info.hours')
     }
@@ -86,25 +93,34 @@ const Contact = () => {
             </h3>
             
             <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <span className="text-xl">{info.icon}</span>
+              {contactInfo.map((info, index) => {
+                const IconComponent = info.icon;
+                return (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <IconComponent className="text-xl text-black" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium mb-1">{info.label}</div>
+                      <div className="text-slate-300">{info.value}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-white font-medium mb-1">{info.label}</div>
-                    <div className="text-slate-300">{info.value}</div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Map Placeholder */}
-            <div className="mt-8 h-64 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 flex items-center justify-center">
-              <div className="text-center">
-                <span className="text-6xl text-yellow-400 mb-2 block">🗺️</span>
-                <div className="text-slate-300">Interaktívna mapa</div>
-              </div>
+            {/* Google Map */}
+            <div className="mt-8 h-64 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden">
+              <iframe
+                src="https://maps.google.com/maps?q=SENATOR,Levická+252/5,Chrenová,949+01+Nitra,Slovakia&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="SENATOR - Levická 252/5, Chrenová, 949 01 Nitra"
+              />
             </div>
           </div>
 
