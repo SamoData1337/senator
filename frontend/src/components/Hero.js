@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from './ui/button';
+import { FaPhone } from 'react-icons/fa';
 
 const Hero = () => {
   const { t } = useLanguage();
