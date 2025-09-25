@@ -13,9 +13,9 @@ const About = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { icon: '🏆', value: '20+', label: 'Rokov skúseností' },
-    { icon: '👥', value: '500+', label: 'Spokojných zákazníkov' },
-    { icon: '🔧', value: '1000+', label: 'Realizovaných projektov' }
+    { icon: FaTrophy, value: '20+', label: 'Rokov skúseností' },
+    { icon: FaUsers, value: '500+', label: 'Spokojných zákazníkov' },
+    { icon: FaWrench, value: '1000+', label: 'Realizovaných projektov' }
   ];
 
   return (
