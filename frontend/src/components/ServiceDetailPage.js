@@ -25,6 +25,10 @@ const ServiceDetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useLanguage();
+  
+  // State for dynamic images
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Map slugs back to service names
   const slugToService = {
@@ -36,18 +40,52 @@ const ServiceDetailPage = () => {
     'postele': 'Postele'
   };
 
-  const serviceToCategory = {
-    'Vstavané skrine': 'Vstavané skrine',
-    'Šatníky': 'Šatníky',
-    'Deliace priečky': 'Deliace priečky', 
-    'Prechodové dvere': 'Prechodové dvere',
-    'Komody, nábytok a iné': 'Nábytok',
-    'Postele': 'Postele'
+  // Map slugs to folder names (for public folder structure)
+  const slugToFolderMap = {
+    'vstavane-skrine': 'vstavane-skrine',
+    'satniky': 'satniky',
+    'deliace-priecky': 'deliace-priecky',
+    'prechodove-dvere': 'prechodove-dvere',
+    'komody-nabytok-a-ine': 'komody-a-nabytok',
+    'postele': 'postele'
   };
 
   const serviceName = slugToService[serviceSlug];
-  const category = serviceToCategory[serviceName];
-  const projects = portfolioItems.filter(item => item.category === category);
+  const folderName = slugToFolderMap[serviceSlug];
+
+  // Load images dynamically when component mounts or serviceSlug changes
+  useEffect(() => {
+    const loadImages = async () => {
+      if (!folderName) {
+        setProjects([]);
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+        const images = await loadCategoryImages(folderName, 20); // Load up to 20 images
+        
+        // Convert to project format for GallerySlider
+        const projectsData = images.map((img, index) => ({
+          id: img.id,
+          title: img.title,
+          category: serviceName,
+          image: img.url,
+          description: img.description
+        }));
+
+        setProjects(projectsData);
+      } catch (error) {
+        console.error('Error loading images:', error);
+        setProjects([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadImages();
+  }, [serviceSlug, folderName, serviceName]);
 
   if (!serviceName) {
     return (
