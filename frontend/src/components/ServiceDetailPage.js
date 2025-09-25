@@ -283,7 +283,19 @@ const ServiceDetailPage = () => {
       {/* Gallery */}
       <section className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
-          <GallerySlider projects={projects} />
+          {isLoading ? (
+            <div className="text-center">
+              <div className="text-white text-xl mb-4">Načítavam galériu...</div>
+              <div className="w-8 h-8 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto"></div>
+            </div>
+          ) : projects.length > 0 ? (
+            <GallerySlider projects={projects} />
+          ) : (
+            <div className="text-center text-slate-400">
+              <div className="text-xl mb-4">Momentálne nie sú k dispozícii žiadne fotografie</div>
+              <div className="text-sm">Pridáme ich čoskoro</div>
+            </div>
+          )}
         </div>
       </section>
 
