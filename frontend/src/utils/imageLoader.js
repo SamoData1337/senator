@@ -3,42 +3,61 @@
 /**
  * Dynamically discover images in a category folder
  * @param {string} category - The service category (e.g., 'vstavane-skrine')
- * @param {number} maxImages - Maximum number of images to check (default: 10)
+ * @param {number} maxImages - Maximum number of images to check (default: 15)
  * @returns {Promise<Array>} - Array of image objects with url and metadata
  */
 export const loadCategoryImages = async (category, maxImages = 15) => {
   const images = [];
   const basePath = `/images/portfolio/${category}`;
   
-  // Check for actual existing images by trying to load them
-  const checkImageExists = (imagePath) => {
+  // Create array of potential image paths
+  const imagePaths = [];
+  for (let i = 1; i <= maxImages; i++) {
+    imagePaths.push(`${basePath}/image-${i}.jpg`);
+  }
+  
+  // Check all images in parallel for better performance
+  const imageChecks = imagePaths.map(async (imagePath, index) => {
     return new Promise((resolve) => {
       const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
+      const timeoutId = setTimeout(() => {
+        resolve(null); // Timeout after 2 seconds
+      }, 2000);
+      
+      img.onload = () => {
+        clearTimeout(timeoutId);
+        resolve({
+          index: index + 1,
+          path: imagePath,
+          exists: true
+        });
+      };
+      
+      img.onerror = () => {
+        clearTimeout(timeoutId);
+        resolve(null);
+      };
+      
       img.src = imagePath;
     });
-  };
+  });
   
-  // Check images sequentially to maintain order
-  for (let i = 1; i <= maxImages; i++) {
-    const imagePath = `${basePath}/image-${i}.jpg`;
-    const exists = await checkImageExists(imagePath);
-    
-    if (exists) {
+  // Wait for all checks to complete
+  const results = await Promise.all(imageChecks);
+  
+  // Filter out null results and create image objects
+  results
+    .filter(result => result !== null)
+    .forEach(result => {
       images.push({
-        id: `${category}-${i}`,
-        url: imagePath,
+        id: `${category}-${result.index}`,
+        url: result.path,
         category: category,
-        filename: `image-${i}.jpg`,
-        title: `${getCategoryDisplayName(category)} - Foto ${i}`,
+        filename: `image-${result.index}.jpg`,
+        title: `${getCategoryDisplayName(category)} - Foto ${result.index}`,
         description: `Realizácia v kategórii ${getCategoryDisplayName(category)}`
       });
-    } else {
-      // If image doesn't exist, stop checking (assumes images are numbered sequentially)
-      break;
-    }
-  }
+    });
   
   return images;
 };
