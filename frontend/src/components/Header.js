@@ -61,8 +61,19 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Language Switcher & Mobile Menu */}
+          {/* Language Switcher, Facebook & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            {/* Facebook Button */}
+            <a
+              href="https://facebook.com/senator.slovakia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-blue-500 transition-colors duration-300 p-2 hover:bg-slate-800 rounded-full"
+              aria-label="Facebook stránka"
+            >
+              <FaFacebook className="w-5 h-5" />
+            </a>
+
             <div className="flex items-center space-x-2">
               <span className="text-yellow-400">🌍</span>
               <Button
