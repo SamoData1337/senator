@@ -9,6 +9,7 @@ import GallerySlider from './GallerySlider';
 const ServiceDetailPage = () => {
   const { serviceSlug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useLanguage();
 
   // Map slugs back to service names
