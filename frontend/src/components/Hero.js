@@ -66,7 +66,7 @@ const Hero = () => {
               onClick={() => scrollToSection('#contact')}
               className="border-slate-400 text-slate-200 hover:bg-slate-700/50 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 backdrop-blur-sm"
             >
-              <FaPhone className="text-sm" />
+              <FaPhone className="text-sm text-yellow-400" />
               {t('hero.ctaSecondary')}
             </Button>
           </div>
