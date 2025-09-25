@@ -43,7 +43,7 @@ const About = () => {
               {t('about.features').map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className="w-6 h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-black text-sm font-bold">✓</span>
+                    <FaCheck className="text-black text-sm" />
                   </div>
                   <span className="text-slate-300 font-medium">{feature}</span>
                 </div>
