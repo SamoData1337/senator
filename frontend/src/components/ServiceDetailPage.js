@@ -5,6 +5,20 @@ import { portfolioItems } from '../data/mock';
 import Header from './Header';
 import Footer from './Footer';
 import GallerySlider from './GallerySlider';
+import { 
+  Palette, 
+  Ruler, 
+  Sparkles, 
+  Wrench, 
+  Settings, 
+  Clipboard, 
+  Target, 
+  BrickWall,
+  RulerDimensionLine,
+  Calculator,
+  Factory,
+  Drill 
+} from 'lucide-react';
 
 const ServiceDetailPage = () => {
   const { serviceSlug } = useParams();
@@ -65,7 +79,8 @@ const ServiceDetailPage = () => {
       process: [
         'Bezplatné zameranie priestoru',
         '3D návrh a vizualizácia',
-        'Výber materiálov a doplnkov', 
+        'Výber materiálov a doplnkov',
+        'Cenová kalkulácia a návrh zmluvy',
         'Výroba na mieru v našej dielni',
         'Profesionálna montáž a finalizácia'
       ]
@@ -157,18 +172,14 @@ const ServiceDetailPage = () => {
                 </div>
                 <div className="space-y-6">
                   {currentService.features.slice(0, 3).map((feature, index) => {
-                    const designIcons = ['🎨', '📐', '✨'];
+                    const DesignIcons = [Palette, Ruler, Sparkles];
+                    const IconComponent = DesignIcons[index];
                     return (
-                      <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20">
-                        <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
-                            <span className="text-2xl">{designIcons[index]}</span>
-                          </div>
-                          <div>
-                            <h4 className="text-white font-bold mb-2">Kvalitné riešenie</h4>
-                            <p className="text-slate-300">{feature}</p>
-                          </div>
+                      <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-600 hover:border-yellow-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20 relative">
+                        <div className="flex items-center justify-center mb-4">
+                            <IconComponent className="w-8 h-8 text-yellow-400" />
                         </div>
+                        <h4 className="text-white font-bold mb-2">{feature}</h4>
                       </div>
                     );
                   })}
@@ -184,18 +195,14 @@ const ServiceDetailPage = () => {
                 </div>
                 <div className="space-y-6">
                   {currentService.features.slice(3, 5).map((feature, index) => {
-                    const serviceIcons = ['🔧', '🛠️'];
+                    const ServiceIcons = [Wrench, Settings];
+                    const IconComponent = ServiceIcons[index];
                     return (
-                      <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20">
-                        <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
-                            <span className="text-2xl">{serviceIcons[index]}</span>
+                      <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-600 hover:border-yellow-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20 relative">
+                          <div className="flex items-center justify-center mb-4">
+                            <IconComponent className="w-8 h-8 text-yellow-400" />
                           </div>
-                          <div>
-                            <h4 className="text-white font-bold mb-2">Profesionálny servis</h4>
-                            <p className="text-slate-300">{feature}</p>
-                          </div>
-                        </div>
+                          <h4 className="text-white font-bold mb-2">{feature}</h4>
                       </div>
                     );
                   })}
@@ -205,21 +212,28 @@ const ServiceDetailPage = () => {
           </div>
 
           {/* Process Section */}
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Proces realizácie</h2>
               <p className="text-slate-300 text-lg">Krok za krokom k vašej dokonalej skrini</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {currentService.process.map((step, index) => {
-                const processIcons = ['📋', '🎯', '🏗️', '🔨', '✅'];
+                const ProcessIcons = [RulerDimensionLine, Target, BrickWall, Calculator, Factory, Drill];
+                const IconComponent = ProcessIcons[index] || Clipboard;
+                
                 return (
-                  <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20">
-                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg flex items-center justify-center mb-4 shadow-lg">
-                      <span className="text-2xl">{processIcons[index] || '📌'}</span>
+                  <div key={index} className="bg-slate-800/50 rounded-xl p-6 border border-slate-600 hover:border-yellow-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/20 relative">
+                    <div className="flex items-center justify-center mb-4">
+                      <IconComponent className="w-8 h-8 text-yellow-400" />
                     </div>
                     <h3 className="text-white font-bold mb-2">Krok {index + 1}</h3>
                     <p className="text-slate-300">{step}</p>
+                    
+                    {/* Connection line - only show between tiles, not after the last one */}
+                    {index < currentService.process.length - 1 && (
+                      <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-yellow-400/50"></div>
+                    )}
                   </div>
                 );
               })}
